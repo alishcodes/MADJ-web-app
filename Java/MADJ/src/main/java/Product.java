@@ -8,23 +8,23 @@ public class Product extends Driver
     String title = " ", desc = " ", img = " ";
     int type = 0;
 
-    static int getPrice(){
+    public float getPrice(){
 
         return price;
     }
-    static float DBGetPrice(){
+    public float DBGetPrice(){
         float cost = 0;
         return cost;
     }
-    static String getTitle(){
+    public String getTitle(){
         String temp = "";
         return temp;
     }
-    static String getDesc(){
+    public String getDesc(){
         String temp = "";
         return temp;
     }
-    static String getImg(){
+    public String getImg(){
         String temp = "";
         return temp;
     }

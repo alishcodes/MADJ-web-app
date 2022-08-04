@@ -2,19 +2,22 @@ import java.util.ArrayList;
 
 public class ShoppingCart extends Driver{
 
-    ArrayList<String> productlist = new ArrayList<>();
+    ArrayList<String> productList;
 
+    public void ShoppingCart(){
+        productList = new ArrayList<String>();
+    }
 
-    static void Add(Product){
+    public void Add(Product product){
 
     }
-    static void Remove(Product){
+    public void Remove(Product product){
 
     }
-    static void Clear(){
+    public void Clear(){
 
     }
-    static float getTotal(){
+    public float getTotal(){
         float temp = 0;
         return temp;
     }

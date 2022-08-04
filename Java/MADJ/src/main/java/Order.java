@@ -7,7 +7,7 @@ public class Order{
     float total = 0;
     int id = 0;
 
-    static void sendConfirmation(){
+    public void sendConfirmation(){
 
     }
 }
