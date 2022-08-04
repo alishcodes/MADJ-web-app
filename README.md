@@ -1,3 +1,3 @@
-## MADJ Project
-# Web Application for Clothing Store "Sprint"
+# MADJ Project
+## Web Application for Clothing Store "Sprint"
 
