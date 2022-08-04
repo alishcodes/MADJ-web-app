@@ -66,14 +66,10 @@ const MenuBar = () => {
                 >
                     <List component="nav" >
                         <ListItem>
-                            <Stack direction="row" justifyContent="space-between" alignItems="center" flex={1}>
-                                <ListItemButton>
-                                    <ListItemText primary={"Clothing"}/>
-                                </ListItemButton>
-                                <Button onClick={toggleSubMenu} color="inherit">
-                                    {openSubMenu ? <ExpandLess/> : <ExpandMore/>}
-                                </Button>
-                            </Stack>
+                            <ListItemButton onClick={toggleSubMenu}>
+                                <ListItemText primary={"Clothing"}/>
+                                {openSubMenu ? <ExpandLess/> : <ExpandMore/>}
+                            </ListItemButton>
                         </ListItem>
                         <Collapse in={openSubMenu} unmountOnExit> {/*Show children when subMenuOpen = true*/}
                             <Divider/>
