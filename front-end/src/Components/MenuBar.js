@@ -9,11 +9,11 @@ import Toolbar from "@mui/material/Toolbar";
 import { Link } from 'react-router-dom';
 
 const MenuBar = () => {
-    {/*Initialize menuOpen to false and func to set state*/}
+    /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
 
-    {/*Open = boolean, sets menuOpen state*/}
+    /*Open = boolean, sets menuOpen state*/
     const toggleDrawer = (open) => {
         setMenuOpen(open);
     }
