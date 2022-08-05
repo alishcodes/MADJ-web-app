@@ -3,7 +3,7 @@ import Newvideo from '../src/Components/Newvideo.mp4'
 
 const VideoMain =() => {
     return (
-        <div className= ' Video-main'>
+        <div className= ' VideoMain'>
             <video src={Newvideo} autoPlay loop muted />
         </div>
     )
