@@ -23,11 +23,11 @@ const MenuBar = () => {
     }
 
     const menuItems = [
-        { link: "/", text: 'All' },
-        { link: "/", text: 'Tops' },
-        { link: "/", text: 'Outerwear'},
-        { link: "/", text: 'Shorts'},
-        { link: "/", text: 'Pants'}
+        { link: "/catalog", text: 'All' },
+        { link: "/catalog", text: 'Tops' },
+        { link: "/catalog", text: 'Outerwear'},
+        { link: "/catalog", text: 'Shorts'},
+        { link: "/catalog", text: 'Pants'}
     ];
 
     return (
@@ -86,14 +86,14 @@ const MenuBar = () => {
                             </List>
                             <Divider/>
                         </Collapse>
-                        <Link to="/" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                        <Link to={"/catalog"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
                             <ListItem>
                                 <ListItemButton onClick={() => toggleDrawer(false)}>
                                     <ListItemText primary={"Shoes"}/>
                                 </ListItemButton>  
                             </ListItem>
                         </Link>
-                        <Link to="/" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                        <Link to={"/catalog"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
                             <ListItem>
                                 <ListItemButton onClick={() => toggleDrawer(false)}>
                                     <ListItemText primary={"Accessories"}/>

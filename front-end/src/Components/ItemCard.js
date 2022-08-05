@@ -9,6 +9,7 @@ import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/ma
  * @param desc {string} The text body of the card
  * @param img {string} A url to an image
  * @param price {float}
+ * @param onAddToCart Function to update if clicked
  */
 const ItemCard = ({title, desc, img, price, onAddToCart}) => {
     return (

@@ -14,7 +14,7 @@ const onAddToCartClick = (id) => {
 /*Page that displays products*/
 const Catalog = () => {
     return (
-        <Grid container justifyContent="center" spacing={10} padding={"25px"} paddingTop={"50px"}>
+        <Grid container justifyContent="center" spacing={10} padding={"100px"} paddingTop={"50px"}>
             {Array.from(Array(25)).map((currItem, index) => (
                 <Grid item>
                     <ItemCard title={"Product Title"}

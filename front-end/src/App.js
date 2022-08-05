@@ -8,8 +8,8 @@ const App = () => {
         <Router>    {/*Use react-router to link pages*/}
             <div>
                 <MenuBar/>
-                <Catalog/>
                 <Routes>    {/*Route paths go here*/}
+                    <Route path={"/catalog"} element={<Catalog/>}/>
                 </Routes>
             </div>
         </Router>
