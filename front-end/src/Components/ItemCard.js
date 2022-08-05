@@ -13,10 +13,11 @@ import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/ma
  */
 const ItemCard = ({title, desc, img, price, onAddToCart}) => {
     return (
-        <Card sx={{ maxWidth: 300 }}>
+        <Card>
             <CardMedia component="img"
                        image={img}
-                       alt={title}/>
+                       alt={title}
+            />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {title}
