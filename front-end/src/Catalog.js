@@ -43,7 +43,7 @@ const Catalog = ({type = ""}) => {
         <Stack spacing={4} alignItems={"center"} justifyContent={"center"}>
             <Grid container spacing={4} justifyContent="flex-start" padding="75px" maxWidth="1500px">
                 {dummyData.slice((page - 1) * ITEMSPERPAGE, page * ITEMSPERPAGE).map((currItem, index) => (
-                    <Grid item xs={12} sm={6} md={6} lg={4}>
+                    <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
                         <ProductCard title={"Product Title"}
                                      img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
                                      desc={"The product description will go here. The product description will go here."}

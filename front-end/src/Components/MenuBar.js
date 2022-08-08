@@ -1,8 +1,8 @@
 import React from "react";
 import { 
     IconButton, Typography, Stack, AppBar, 
-    Drawer, Box, Button, List, ListItem, ListItemButton, 
-    ListItemText, ListItemIcon, Grid, Divider } from "@mui/material";
+    Drawer, Box, List, ListItem, ListItemButton,
+    ListItemText, Divider } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
 import { Menu, ShoppingCart, ExpandLess, ExpandMore } from '@mui/icons-material';
 import Toolbar from "@mui/material/Toolbar";
@@ -76,7 +76,7 @@ const MenuBar = () => {
                             <Divider/>
                             <List component="div" disablePadding>
                                 {menuItems.map( ( curr, index ) => (
-                                    <Link to={curr.link} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                                    <Link to={curr.link} style={{ textDecoration: 'inherit', color: 'inherit' }} key={curr.text}>
                                         <ListItem>
                                             <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
                                                 <ListItemText primary={curr.text} />
