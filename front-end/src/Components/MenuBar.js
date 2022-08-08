@@ -12,6 +12,7 @@ const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
+    const page = 1;
 
     /*Open = boolean, sets menuOpen state*/
     const toggleDrawer = (open) => {
@@ -24,10 +25,10 @@ const MenuBar = () => {
 
     const menuItems = [
         { link: "/catalog", text: 'All' },
-        { link: "/catalog", text: 'Tops' },
-        { link: "/catalog", text: 'Outerwear'},
-        { link: "/catalog", text: 'Shorts'},
-        { link: "/catalog", text: 'Pants'}
+        { link: "/catalog/tops", text: 'Tops' },
+        { link: "/catalog/outerwear", text: 'Outerwear'},
+        { link: "/catalog/shorts", text: 'Shorts'},
+        { link: "/catalog/pants", text: 'Pants'}
     ];
 
     return (
@@ -86,14 +87,14 @@ const MenuBar = () => {
                             </List>
                             <Divider/>
                         </Collapse>
-                        <Link to={"/catalog"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                        <Link to={"/catalog/shoes"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
                             <ListItem>
                                 <ListItemButton onClick={() => toggleDrawer(false)}>
                                     <ListItemText primary={"Shoes"}/>
                                 </ListItemButton>  
                             </ListItem>
                         </Link>
-                        <Link to={"/catalog"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                        <Link to={"/catalog/accessories"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
                             <ListItem>
                                 <ListItemButton onClick={() => toggleDrawer(false)}>
                                     <ListItemText primary={"Accessories"}/>

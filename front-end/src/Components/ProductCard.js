@@ -11,7 +11,7 @@ import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/ma
  * @param price {float}
  * @param onAddToCart Function to update if clicked
  */
-const ItemCard = ({title, desc, img, price, onAddToCart}) => {
+const ProductCard = ({title, desc, img, price, onAddToCart}) => {
     return (
         <Card>
             <CardMedia component="img"
@@ -34,4 +34,4 @@ const ItemCard = ({title, desc, img, price, onAddToCart}) => {
     );
 }
 
-export default ItemCard;
+export default ProductCard;
