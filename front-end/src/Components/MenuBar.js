@@ -48,11 +48,9 @@ const MenuBar = () => {
                                 Sprint
                             </Typography>
                         </Link>
-                        <Link to={"/"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <IconButton size="large">
-                                <ShoppingCart sx={{ color: "gray"}}/>
-                            </IconButton>
-                        </Link>
+                        <IconButton component={Link} to={"/"} size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }}>
+                            <ShoppingCart sx={{ color: "gray"}}/>
+                        </IconButton>
                     </Stack>
                 </Toolbar>
             </AppBar>
@@ -65,42 +63,34 @@ const MenuBar = () => {
                     role="presentation"
                     sx={{ width: 250}}
                 >
-                    <List component="nav" >
-                        <ListItem>
-                            <ListItemButton onClick={toggleSubMenu}>
-                                <ListItemText primary={"Clothing"}/>
-                                {openSubMenu ? <ExpandLess/> : <ExpandMore/>}
-                            </ListItemButton>
-                        </ListItem>
+                    <List component="nav" disablePadding>
+                        <ListItemButton onClick={toggleSubMenu} sx={{ margin: "10px", padding: "10px"}}>
+                            <ListItemText primary={"Clothing"}/>
+                            {openSubMenu ? <ExpandLess/> : <ExpandMore/>}
+                        </ListItemButton>
                         <Collapse in={openSubMenu} unmountOnExit> {/*Show children when subMenuOpen = true*/}
                             <Divider/>
-                            <List component="div" disablePadding>
+                            <List component="div">
                                 {menuItems.map( ( curr, index ) => (
-                                    <Link to={curr.link} style={{ textDecoration: 'inherit', color: 'inherit' }} key={curr.text}>
-                                        <ListItem>
-                                            <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
-                                                <ListItemText primary={curr.text} />
-                                            </ListItemButton>
-                                        </ListItem>
-                                    </Link>
+                                    <ListItem component={Link} to={curr.link} key={curr.text} sx={{ padding: "0", margin:"0", textDecoration: 'inherit', color: 'inherit' }}>
+                                        <ListItemButton onClick={() => toggleDrawer(false)} sx={{ padding: "10px", pl: 4 }}>
+                                            <ListItemText primary={curr.text} />
+                                        </ListItemButton>
+                                    </ListItem>
                                 ))}
                             </List>
                             <Divider/>
                         </Collapse>
-                        <Link to={"/catalog/shoes"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <ListItem>
-                                <ListItemButton onClick={() => toggleDrawer(false)}>
-                                    <ListItemText primary={"Shoes"}/>
-                                </ListItemButton>  
-                            </ListItem>
-                        </Link>
-                        <Link to={"/catalog/accessories"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <ListItem>
-                                <ListItemButton onClick={() => toggleDrawer(false)}>
-                                    <ListItemText primary={"Accessories"}/>
-                                </ListItemButton>  
-                            </ListItem>
-                        </Link>
+                        <ListItem component={Link} to={"/catalog/shoes"} sx={{ padding: 0, margin: 0, marginTop: "8px", textDecoration: 'inherit', color: 'inherit' }}>
+                            <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
+                                <ListItemText primary={"Shoes"}/>
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem component={Link} to={"/catalog/accessories"} sx={{ padding: 0, margin: 0, marginTop: "8px", textDecoration: 'inherit', color: 'inherit' }}>
+                            <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
+                                <ListItemText primary={"Accessories"}/>
+                            </ListItemButton>
+                        </ListItem>
                     </List>
                 </Box>
             </Drawer>
