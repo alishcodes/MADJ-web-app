@@ -12,11 +12,10 @@ const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
-    const page = 1;
 
-    /*Open = boolean, sets menuOpen state*/
-    const toggleDrawer = (open) => {
-        setMenuOpen(open);
+    /*isOpen = boolean, sets menuOpen state*/
+    const toggleDrawer = (isOpen) => {
+        setMenuOpen(isOpen);
     }
 
     const toggleSubMenu = () => {

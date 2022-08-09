@@ -23,14 +23,14 @@ const Catalog = ({type = ""}) => {
     const [searchParams] = useSearchParams();   //to parse URL params
     const navigate = useNavigate(); //to push a new page in history
     const dummyData = Array.from(Array(100));
-    const ITEMSPERPAGE = 6;
-    const MAXPAGES = Math.ceil(dummyData.length / ITEMSPERPAGE);
+    const ITEMS_PER_PAGE = 6;
+    const MAX_PAGES = Math.ceil(dummyData.length / ITEMS_PER_PAGE);
 
     //set page to URL variable "page"
-    //if logically invalid, set to 1 or MAXPAGES
+    //if logically invalid, set to 1 or MAX_PAGES
     let page = parseInt(searchParams.get("page"));
     if (isNaN(page) || page < 1) page = 1;
-    page = page > MAXPAGES ? MAXPAGES : page;
+    page = page > MAX_PAGES ? MAX_PAGES : page;
 
     //takes current page and pushes in history
     //sets URL to have appropriate trail
@@ -42,7 +42,7 @@ const Catalog = ({type = ""}) => {
     return (
         <Stack spacing={4} alignItems={"center"} justifyContent={"center"}>
             <Grid container spacing={4} justifyContent="flex-start" padding="75px" maxWidth="1500px">
-                {dummyData.slice((page - 1) * ITEMSPERPAGE, page * ITEMSPERPAGE).map((currItem, index) => (
+                {dummyData.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((currItem, index) => (
                     <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
                         <ProductCard title={"Product Title"}
                                      img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
@@ -56,7 +56,7 @@ const Catalog = ({type = ""}) => {
             <Divider flexItem/>
             <Pagination
                 page={page}
-                count={MAXPAGES}
+                count={MAX_PAGES}
                 onChange={(event, pageNum) => handlePaginationClick(pageNum)}
                 sx={{ paddingBottom: "25px" }}
             />
