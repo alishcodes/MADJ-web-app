@@ -2,8 +2,9 @@ import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import VideoMain from './VideoMain'
 import MenuBar from './Components/MenuBar';
 import Catalog from './Catalog';
+import Footer from '../src/Components/Container/Footer'
+//{/*Main app component*/}
 
-{/*Main app component*/}
 const App = () => {
     return (
         <Router>    {/*Use react-router to link pages*/}
@@ -19,7 +20,11 @@ const App = () => {
                     <Route path={"/catalog/shoes"} element={<Catalog type={"shoes"}/>}/>
                     <Route path={"/catalog/accessories"} element={<Catalog type={"accessories"}/>}/>
                     <Route path={"*"} element={<h3>Page Not Found</h3>}/>
+
+
+
                 </Routes>
+                <Footer/>
             </div>
         </Router>
     );

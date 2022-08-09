@@ -11,12 +11,22 @@ import { Link } from 'react-router-dom';
 const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = React.useState(false);
+
+
+    const [shoppingOpen,setCartOpen] = React.useState(false);
+
+
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
 
     /*isOpen = boolean, sets menuOpen state*/
     const toggleDrawer = (isOpen) => {
         setMenuOpen(isOpen);
     }
+
+    const toggleDrawerCart = (isOpen) => { //toggle  for cart
+        setCartOpen(isOpen);
+    }
+
 
     const toggleSubMenu = () => {
         setOpenSubMenu((!openSubMenu));
@@ -43,12 +53,13 @@ const MenuBar = () => {
                             <Menu sx={{ color: "gray" }}/>
                         </IconButton>
                         <Link to={"/"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <Typography variant="overline" fontSize={30} sx={{ color: "gray" }}>
+                            <Typography variant="overline" fontSize={30} sx={{ color: "Black" }}>
                                 Sprint
                             </Typography>
                         </Link>
-                        <IconButton component={Link} to={"/"} size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <ShoppingCart sx={{ color: "gray"}}/>
+                        <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={() => toggleDrawerCart(true)}>
+                            <ShoppingCart sx={{ color: "#3D5B59"}}/>
+
                         </IconButton>
                     </Stack>
                 </Toolbar>
@@ -58,10 +69,12 @@ const MenuBar = () => {
                 open={menuOpen}
                 onClose={() => toggleDrawer(false)}
             >
+
                 <Box
                     role="presentation"
-                    sx={{ width: 250}}
-                >
+                    sx={{ width: 250}}>
+
+
                     <List component="nav" disablePadding>
                         <ListItemButton onClick={toggleSubMenu} sx={{ margin: "10px", padding: "10px"}}>
                             <ListItemText primary={"Clothing"}/>
@@ -93,6 +106,19 @@ const MenuBar = () => {
                     </List>
                 </Box>
             </Drawer>
+            <div> {/*Shopping cart window*/}
+                <Drawer
+                    anchor='right'
+                    open={shoppingOpen}
+                    onClose={() => toggleDrawerCart(false)}>
+                    <Box
+                        role="presentation"
+                        sx={{ width: 500}}
+                    >
+
+                    </Box>
+                </Drawer>
+            </div>
         </div>
     );
 }
