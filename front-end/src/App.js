@@ -20,9 +20,6 @@ const App = () => {
                     <Route path={"/catalog/shoes"} element={<Catalog type={"shoes"}/>}/>
                     <Route path={"/catalog/accessories"} element={<Catalog type={"accessories"}/>}/>
                     <Route path={"*"} element={<h3>Page Not Found</h3>}/>
-
-
-
                 </Routes>
                 <Footer/>
             </div>
