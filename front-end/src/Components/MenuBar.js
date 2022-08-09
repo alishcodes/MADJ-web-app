@@ -44,15 +44,15 @@ const MenuBar = () => {
                         justifyContent="space-between"
                         alignItems="center">
                         <IconButton size="large" edge="start" onClick={() => toggleDrawer(true)}> {/*When clicked, open=true*/}
-                            <Menu sx={{ color: "gray" }}/>
+                            <Menu sx={{ color: "Black" }}/>
                         </IconButton>
                         <Link to={"/"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                            <Typography variant="overline" fontSize={30} sx={{ color: "gray" }}>
+                            <Typography variant="overline" fontSize={30} sx={{ color: "Black" }}>
                                 Sprint
                             </Typography>
                         </Link>
                         <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={() => toggleDrawerCart(true)}>
-                            <ShoppingCart sx={{ color: "gray"}}/>
+                            <ShoppingCart sx={{ color: "#3D5B59"}}/>
                         </IconButton>
                     </Stack>
                 </Toolbar>
