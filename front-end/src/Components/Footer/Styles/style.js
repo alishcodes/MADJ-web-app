@@ -3,9 +3,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
 padding: 10px 10px;
   background:  #2A363B;
-  //position: absolute;
-  //bottom: 0;
-  //width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   
 `
 
