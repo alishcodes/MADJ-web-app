@@ -26,11 +26,6 @@ public class Driver
             }
             catch (Exception e) { }
         }
-        /*
-        Product product1 = new Product(0, 24.32f, "Red Shirt", "A shirt that is red",
-                "12452@imgur.com", Product.ProductType.Shirt);
-        System.out.println(product1);
-        */
     }
 
 

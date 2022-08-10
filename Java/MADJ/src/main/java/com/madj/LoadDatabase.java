@@ -15,6 +15,11 @@ class LoadDatabase {
     CommandLineRunner initDatabase(ProductRepository repository) {
 
         return args -> {
+            /* TODO
+            *   Populate repository with GCloud DB instead
+            * (To do this, all we have to do is create the products from the db values here using the GCloudConnector.
+            * The existing HTTP and ProductRepository setup should function correctly as is) */
+
             log.info("Preloading " + repository.save(
                     new Product(24.32f, "Red Shirt", "A shirt that is red",
                     "12452@imgur.com", Product.ProductType.Shirt)));

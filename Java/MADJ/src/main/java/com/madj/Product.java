@@ -16,6 +16,7 @@ public class Product
     float price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
+    public Product(){}
     public Product(float price, String title, String desc, String img,
                    ProductType productType){
         this.price = price;
@@ -47,6 +48,24 @@ public class Product
     }
     public ProductType getProductType(){
         return productType;
+    }
+    public void setTitle(String title){
+        this.title = title;
+    }
+    public void setDesc(String desc){
+        this.desc = desc;
+    }
+    public void setImg(String img){
+        this.img = img;
+    }
+    public void setPrice(float price){
+        this.price = price;
+    }
+    public void setProductType(ProductType productType){
+        this.productType = productType;
+    }
+    public void setId(Long id){
+        this.id = id;
     }
     @Override
     public boolean equals(Object o) {
