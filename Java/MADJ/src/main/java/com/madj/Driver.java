@@ -24,9 +24,11 @@ public class Driver
                 conn.close ();
                 System.out.println ("Database connection terminated");
             }
-            catch (Exception e) { /* ignore close errors */ }
+            catch (Exception e) { }
         }
     }
+
+
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);

@@ -7,6 +7,16 @@ public class Product
     String title = " ", desc = " ", img = " ";
     int type = 0;
 
+    public Product(int id, float price, String title, String desc, String img,
+                   int type){
+        this.id = id;
+        this.price = price;
+        this.title = title;
+        this.desc = desc;
+        this.img = img;
+        this.type = type;
+    }
+
     public float getPrice(){
 
         return price;
