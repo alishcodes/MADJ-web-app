@@ -1,22 +1,22 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class GCloudConnection {
+public class GCloudConnector {
 
-    private static GCloudConnection instance;
+    private static GCloudConnector instance;
 
-    private GCloudConnection(Connection conn)
+    private GCloudConnector(Connection conn)
     {
         connection = conn;
     }
 
     public Connection connection;
 
-    public static GCloudConnection getInstance(){
+    public static GCloudConnector getInstance(){
         if(instance != null){
             return instance;
         }
-        instance = new GCloudConnection(getConnection());
+        instance = new GCloudConnector(getConnection());
         return instance;
     }
     private static Connection getConnection(){

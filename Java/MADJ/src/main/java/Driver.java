@@ -4,7 +4,7 @@ public class Driver
 {
     public static void main (String[] args)
     {
-        Connection conn = GCloudConnection.getInstance().connection;
+        Connection conn = GCloudConnector.getInstance().connection;
         if (conn != null)
         {
             try
