@@ -2,17 +2,21 @@ package com.madj;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+@Entity
 public class Product
 {
     public enum ProductType{
         Shirt,
         Pants
     }
-    int id = 0;
+    @Id @GeneratedValue Long id;
     float price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
-    public Product(int id, float price, String title, String desc, String img,
+    public Product(Long id, float price, String title, String desc, String img,
                    ProductType productType){
         this.id = id;
         this.price = price;
@@ -60,7 +64,10 @@ public class Product
                 && Objects.equals(this.productType, product.productType)
                 && Objects.equals(this.img, product.img);
     }
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.title, this.desc, this.price, this.productType, this.img);
+    }
     public String toString(){
         return "Product{" + "id=" + this.id + ", title='" + this.title
                 + '\'' + ", desc='" + this.desc + '\''
