@@ -1,9 +1,6 @@
 package com.madj;
 
-public class Product extends Driver
-
-
-
+public class Product
 {
     int id = 0;
     float price = 0;
@@ -30,4 +27,6 @@ public class Product extends Driver
         String temp = "";
         return temp;
     }
+
+
 }
