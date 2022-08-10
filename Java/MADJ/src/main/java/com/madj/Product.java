@@ -30,21 +30,14 @@ public class Product
 
         return price;
     }
-    public float DBGetPrice(){
-        float cost = 0;
-        return cost;
-    }
     public String getTitle(){
-        String temp = "";
-        return temp;
+        return title;
     }
     public String getDesc(){
-        String temp = "";
-        return temp;
+        return desc;
     }
     public String getImg(){
-        String temp = "";
-        return temp;
+        return img;
     }
     public ProductType getProductType(){
         return productType;
