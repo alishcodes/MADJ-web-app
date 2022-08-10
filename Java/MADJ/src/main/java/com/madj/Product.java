@@ -16,9 +16,8 @@ public class Product
     float price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
-    public Product(Long id, float price, String title, String desc, String img,
+    public Product(float price, String title, String desc, String img,
                    ProductType productType){
-        this.id = id;
         this.price = price;
         this.title = title;
         this.desc = desc;
