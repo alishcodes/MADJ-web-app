@@ -80,9 +80,13 @@ public class Product
         return Objects.hash(this.id, this.title, this.desc, this.price, this.productType, this.img);
     }
     public String toString(){
-        return "Product{" + "id=" + this.id + ", title='" + this.title
-                + '\'' + ", desc='" + this.desc + '\''
-                + ", price=" + this.price + ", type="+this.productType.ordinal()
-                + ", img='" + this.img + '\'' + '}';
+        return "Product{" +
+                "id=" + this.id +
+                ", title='" + this.title + '\'' +
+                ", desc='" + this.desc + '\'' +
+                ", price=" + this.price +
+                ", type="+this.productType.ordinal() +
+                ", img='" + this.img + '\'' +
+                '}';
     }
 }
