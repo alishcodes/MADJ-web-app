@@ -40,6 +40,11 @@
 # *.iml
 # *.ipr
 
+.idea/
+out/
+*.iml
+target/
+
 # CMake
 cmake-build-*/
 
