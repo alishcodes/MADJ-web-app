@@ -9,8 +9,12 @@ import javax.persistence.Id;
 public class Product
 {
     public enum ProductType{
-        Shirt,
-        Pants
+        Tops,
+        Outerwear,
+        Shorts,
+        Pants,
+        Shoes,
+        Accessories
     }
     @Id @GeneratedValue Long id;
     float price = 0;
@@ -59,6 +63,9 @@ public class Product
     }
     public void setId(Long id){
         this.id = id;
+    }
+    public Long getId(){
+        return this.id;
     }
     @Override
     public boolean equals(Object o) {
