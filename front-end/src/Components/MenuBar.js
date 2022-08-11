@@ -50,7 +50,7 @@ const MenuBar = () => {
                         justifyContent="space-between"
                         alignItems="center">
                         <IconButton size="large" edge="start" onClick={() => toggleDrawer(true)}> {/*When clicked, open=true*/}
-                            <Menu sx={{ color: "gray" }}/>
+                            <Menu sx={{ color: "#3D5B59" }}/>
                         </IconButton>
                         <Link to={"/"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
                             <Typography variant="overline" fontSize={30} sx={{ color: "Black" }}>
@@ -58,8 +58,7 @@ const MenuBar = () => {
                             </Typography>
                         </Link>
                         <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={() => toggleDrawerCart(true)}>
-                            <ShoppingCart sx={{ color: "#3D5B59"}}/>
-
+                            <ShoppingCart sx={{ color: "#3D5B59" }}/>
                         </IconButton>
                     </Stack>
                 </Toolbar>
@@ -69,12 +68,10 @@ const MenuBar = () => {
                 open={menuOpen}
                 onClose={() => toggleDrawer(false)}
             >
-
                 <Box
                     role="presentation"
-                    sx={{ width: 250}}>
-
-
+                    sx={{ width: 250}}
+                >
                     <List component="nav" disablePadding>
                         <ListItemButton onClick={toggleSubMenu} sx={{ margin: "10px", padding: "10px"}}>
                             <ListItemText primary={"Clothing"}/>
