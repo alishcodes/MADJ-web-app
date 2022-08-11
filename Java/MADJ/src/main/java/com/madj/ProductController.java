@@ -1,9 +1,8 @@
 package com.madj;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,16 +18,27 @@ class ProductController {
 
     // Aggregate root
     // tag::get-aggregate-root[]
-    @GetMapping("/products")
-    List<Product> all() {
-        return repository.findAll();
+    @GetMapping(value = "/products")
+    List<Product> all(@RequestParam(required = false) String type) {
+        if(type == null){
+            return repository.findAll();
+        }
+        Product.ProductType selectedType;
+        try{
+             selectedType = Product.ProductType.valueOf(type);
+        }
+        catch(IllegalArgumentException e){
+            throw new TypeNotFoundException(type);
+        }
+        List<Product> results = new LinkedList<Product>();
+        for(Product p : repository.findAll()){
+            if(p.getProductType() == selectedType){
+                results.add(p);
+            }
+        }
+        return results;
     }
     // end::get-aggregate-root[]
-
-    @PostMapping("/products")
-    Product newProduct(@RequestBody Product newProduct) {
-        return repository.save(newProduct);
-    }
 
     // Single item
 
@@ -37,27 +47,5 @@ class ProductController {
 
         return repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
-    }
-    @PutMapping("/products/{id}")
-    Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
-
-        return repository.findById(id)
-                .map(product -> {
-                    product.setTitle(newProduct.getTitle());
-                    product.setDesc(newProduct.getDesc());
-                    product.setPrice(newProduct.getPrice());
-                    product.setImg(newProduct.getImg());
-                    product.setProductType(newProduct.getProductType());
-                    return repository.save(product);
-                })
-                .orElseGet(() -> {
-                    newProduct.setId(id);
-                    return repository.save(newProduct);
-                });
-    }
-
-    @DeleteMapping("/products/{id}")
-    void deleteProduct(@PathVariable Long id) {
-        repository.deleteById(id);
     }
 }
