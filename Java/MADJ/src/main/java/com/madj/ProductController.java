@@ -2,6 +2,8 @@ package com.madj;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,7 +38,6 @@ class ProductController {
         return repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
-
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
 

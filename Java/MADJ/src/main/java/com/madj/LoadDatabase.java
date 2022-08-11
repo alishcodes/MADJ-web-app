@@ -22,7 +22,7 @@ class LoadDatabase {
 
             log.info("Preloading " + repository.save(
                     new Product(24.32f, "Red Shirt", "A shirt that is red",
-                    "12452@imgur.com", Product.ProductType.Shirt)));
+                    "12452@imgur.com", Product.ProductType.Tops)));
             log.info("Preloading " + repository.save(
                     new Product(33.32f, "Blue Pants", "A pair of pants that are blue",
                     "82134@imgur.com", Product.ProductType.Pants)));
