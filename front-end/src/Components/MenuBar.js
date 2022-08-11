@@ -1,32 +1,30 @@
 import React from "react";
-import { 
+import { Link } from 'react-router-dom';
+import {
     IconButton, Typography, Stack, AppBar, 
     Drawer, Box, List, ListItem, ListItemButton,
-    ListItemText, Divider } from "@mui/material";
-import Collapse from '@mui/material/Collapse';
+    ListItemText, Divider, Toolbar, Collapse
+} from "@mui/material";
 import { Menu, ShoppingCart, ExpandLess, ExpandMore } from '@mui/icons-material';
-import Toolbar from "@mui/material/Toolbar";
-import { Link } from 'react-router-dom';
 
+/**
+ * Displays the website menu bar with product types and shopping cart button.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const MenuBar = () => {
-    /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = React.useState(false);
-
-
     const [shoppingOpen,setCartOpen] = React.useState(false);
-
-
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
 
-    /*isOpen = boolean, sets menuOpen state*/
-    const toggleDrawer = (isOpen) => {
+    const toggleDrawer = (isOpen) => {  //sets menuOpen state
         setMenuOpen(isOpen);
     }
 
     const toggleDrawerCart = (isOpen) => { //toggle  for cart
         setCartOpen(isOpen);
     }
-
 
     const toggleSubMenu = () => {
         setOpenSubMenu((!openSubMenu));
@@ -103,19 +101,17 @@ const MenuBar = () => {
                     </List>
                 </Box>
             </Drawer>
-            <div> {/*Shopping cart window*/}
-                <Drawer
-                    anchor='right'
-                    open={shoppingOpen}
-                    onClose={() => toggleDrawerCart(false)}>
-                    <Box
-                        role="presentation"
-                        sx={{ width: 500}}
-                    >
-
-                    </Box>
-                </Drawer>
-            </div>
+            <Drawer
+                anchor='right'
+                open={shoppingOpen}
+                onClose={() => toggleDrawerCart(false)}
+            >
+                <Box
+                    role="presentation"
+                    sx={{ width: 500}}
+                >
+                </Box>
+            </Drawer>
         </div>
     );
 }
