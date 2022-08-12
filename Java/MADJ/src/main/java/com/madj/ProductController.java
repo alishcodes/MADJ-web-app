@@ -11,6 +11,8 @@ class ProductController {
 
     private final ProductRepository repository;
 
+    public static ProductRepository globalRepository;
+
     ProductController(ProductRepository repository) {
         this.repository = repository;
     }
