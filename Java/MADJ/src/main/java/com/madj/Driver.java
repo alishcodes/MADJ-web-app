@@ -13,16 +13,5 @@ public class Driver
     public static void main (String[] args)
     {
         SpringApplication.run(Driver.class, args);
-
-        Connection conn = GCloudConnector.getInstance().connection;
-        if (conn != null)
-        {
-            try
-            {
-                conn.close ();
-                System.out.println ("Database connection terminated");
-            }
-            catch (Exception e) { }
-        }
     }
 }
