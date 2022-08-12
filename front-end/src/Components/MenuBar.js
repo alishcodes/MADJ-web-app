@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext, useState } from "react";
 import { 
     IconButton, Typography, Stack, AppBar, 
     Drawer, Box, List, ListItem, ListItemButton,
@@ -7,26 +7,19 @@ import Collapse from '@mui/material/Collapse';
 import { Menu, ShoppingCart, ExpandLess, ExpandMore } from '@mui/icons-material';
 import Toolbar from "@mui/material/Toolbar";
 import { Link } from 'react-router-dom';
+import ShoppingCartContext from "../contexts/ShoppingCartContext";
+
 
 const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
-    const [menuOpen, setMenuOpen] = React.useState(false);
-
-
-    const [shoppingOpen,setCartOpen] = React.useState(false);
-
-
-    const [openSubMenu, setOpenSubMenu] = React.useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [openSubMenu, setOpenSubMenu] = useState(false);
+    const { openCart } = useContext(ShoppingCartContext);
 
     /*isOpen = boolean, sets menuOpen state*/
     const toggleDrawer = (isOpen) => {
         setMenuOpen(isOpen);
     }
-
-    const toggleDrawerCart = (isOpen) => { //toggle  for cart
-        setCartOpen(isOpen);
-    }
-
 
     const toggleSubMenu = () => {
         setOpenSubMenu((!openSubMenu));
@@ -57,7 +50,7 @@ const MenuBar = () => {
                                 Sprint
                             </Typography>
                         </Link>
-                        <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={() => toggleDrawerCart(true)}>
+                        <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={openCart}>
                             <ShoppingCart sx={{ color: "#3D5B59" }}/>
                         </IconButton>
                     </Stack>
@@ -103,19 +96,6 @@ const MenuBar = () => {
                     </List>
                 </Box>
             </Drawer>
-            <div> {/*Shopping cart window*/}
-                <Drawer
-                    anchor='right'
-                    open={shoppingOpen}
-                    onClose={() => toggleDrawerCart(false)}>
-                    <Box
-                        role="presentation"
-                        sx={{ width: 500}}
-                    >
-
-                    </Box>
-                </Drawer>
-            </div>
         </div>
     );
 }

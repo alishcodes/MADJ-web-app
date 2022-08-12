@@ -1,18 +1,9 @@
 import {Grid, Stack, Pagination, Divider } from '@mui/material';
 import ProductCard from './Components/ProductCard';
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {useNavigate, useSearchParams} from "react-router-dom";
-
-/**
- * Function to keep track of products added to cart.
- * To be implemented.
- *
- * @param id {int} The product object id
- */
-const onAddToCartClick = (id) => {
-    console.log(id);
-}
+import ShoppingCartContext from "./contexts/ShoppingCartContext";
 
 
 /**
@@ -24,14 +15,16 @@ const Catalog = ({type = ""}) => {
     const [searchParams] = useSearchParams();   //to parse URL params
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
+    const {addToCart} = useContext(ShoppingCartContext);
     const navigate = useNavigate(); //to push a new page in history
     const ITEMS_PER_PAGE = 6;
 
     useEffect(() => {
+
         fetch('/api/products')
             .then((response) => response.json())
             .then((fetchedData) => {
-                setData((fetchedData))
+                console.log(fetchedData)
             })
             .catch((err) => {
                 setError(err.message);
@@ -59,13 +52,13 @@ const Catalog = ({type = ""}) => {
                 <div>{`Could not fetch data: ${error}`}</div>
             )}
             <Grid container spacing={4} justifyContent="flex-start" padding="75px" maxWidth="1500px">
-                {data && data.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((currItem, id) => (
-                    <Grid item xs={12} sm={6} md={6} lg={4} key={id}>
+                {data && data.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((currItem, index) => (
+                    <Grid item xs={12} sm={6} md={6} lg={4} key={currItem.id}>
                         <ProductCard title={currItem.title}
                                      img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
                                      desc={currItem.desc}
                                      price={currItem.price}
-                                     onAddToCart={() => onAddToCartClick(id)}
+                                     onAddToCart={() => addToCart(currItem.title, parseFloat(currItem.price))}
                         />
                     </Grid>
                 ))}

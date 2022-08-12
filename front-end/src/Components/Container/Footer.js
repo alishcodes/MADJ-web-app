@@ -11,9 +11,7 @@ const Footer =()=>{
                 <FooterC.Row>
                     <FooterC.Column>
                         <FooterC.Title>ABOUT US</FooterC.Title>
-                        <FooterC.Link href="/">Elegance and simplicity made with comfort in mind  </FooterC.Link>
-
-
+                        <FooterC.Link href="/">Elegance and simplicity made with comfort in mind</FooterC.Link>
                     </FooterC.Column>
                     <FooterC.Column>
                         <FooterC.Title>SUBSCRIBE</FooterC.Title>
@@ -25,7 +23,6 @@ const Footer =()=>{
                         <FooterC.Link href="/">Contact </FooterC.Link>
                         <FooterC.Link href="/">Shipping  </FooterC.Link>
                         <FooterC.Link href="/">Return</FooterC.Link>
-
                     </FooterC.Column>
                     <FooterC.Column>
                         <FooterC.Title>POLICIES</FooterC.Title>
