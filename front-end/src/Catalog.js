@@ -28,15 +28,15 @@ const Catalog = ({type = ""}) => {
     const ITEMS_PER_PAGE = 6;
 
     useEffect(() => {
-        fetch('/api/products')
+        fetch(type === "" ? `/api/products` : `/api/products?type=${type}`)
             .then((response) => response.json())
             .then((fetchedData) => {
-                setData((fetchedData))
+                setData(fetchedData)
             })
             .catch((err) => {
-                setError(err.message);
-            });
-    }, []);
+                setError(err.message)
+            })
+    }, [type])
 
     const MAX_PAGES = data ? Math.ceil(data.length / ITEMS_PER_PAGE) : 1;
 

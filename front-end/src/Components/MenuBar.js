@@ -17,7 +17,6 @@ const MenuBar = () => {
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [shoppingOpen,setCartOpen] = React.useState(false);
     const [openSubMenu, setOpenSubMenu] = React.useState(false);
-
     const toggleDrawer = (isOpen) => {  //sets menuOpen state
         setMenuOpen(isOpen);
     }
@@ -31,11 +30,11 @@ const MenuBar = () => {
     }
 
     const menuItems = [
-        { link: "/catalog", text: 'All' },
-        { link: "/catalog/tops", text: 'Tops' },
-        { link: "/catalog/outerwear", text: 'Outerwear'},
-        { link: "/catalog/shorts", text: 'Shorts'},
-        { link: "/catalog/pants", text: 'Pants'}
+        { link: "catalog", text: 'All' },
+        { link: "catalog/tops", text: 'Tops' },
+        { link: "catalog/outerwear", text: 'Outerwear'},
+        { link: "catalog/shorts", text: 'Shorts'},
+        { link: "catalog/pants", text: 'Pants'}
     ];
 
     return (
