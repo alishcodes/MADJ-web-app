@@ -1,15 +1,21 @@
 import { useContext, useState } from "react";
-import { 
+import { Link } from 'react-router-dom';
+import {
     IconButton, Typography, Stack, AppBar, 
     Drawer, Box, List, ListItem, ListItemButton,
-    ListItemText, Divider } from "@mui/material";
-import Collapse from '@mui/material/Collapse';
+    ListItemText, Divider, Toolbar, Collapse
+} from "@mui/material";
 import { Menu, ShoppingCart, ExpandLess, ExpandMore } from '@mui/icons-material';
-import Toolbar from "@mui/material/Toolbar";
-import { Link } from 'react-router-dom';
 import ShoppingCartContext from "../contexts/ShoppingCartContext";
 
 
+
+/**
+ * Displays the website menu bar with product types and shopping cart button.
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = useState(false);
@@ -26,11 +32,11 @@ const MenuBar = () => {
     }
 
     const menuItems = [
-        { link: "/catalog", text: 'All' },
-        { link: "/catalog/tops", text: 'Tops' },
-        { link: "/catalog/outerwear", text: 'Outerwear'},
-        { link: "/catalog/shorts", text: 'Shorts'},
-        { link: "/catalog/pants", text: 'Pants'}
+        { link: "catalog", text: 'All' },
+        { link: "catalog/tops", text: 'Tops' },
+        { link: "catalog/outerwear", text: 'Outerwear'},
+        { link: "catalog/shorts", text: 'Shorts'},
+        { link: "catalog/pants", text: 'Pants'}
     ];
 
     return (

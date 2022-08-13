@@ -1,10 +1,12 @@
 import {Grid, Stack, Pagination, Divider } from '@mui/material';
 import ProductCard from './Components/ProductCard';
 import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import {useNavigate, useSearchParams} from "react-router-dom";
-import ShoppingCartContext from "./contexts/ShoppingCartContext";
 
+const onAddToCart = (id) => {
+    console.log(id);
+}
 
 /**
  * Page that displays products
@@ -15,21 +17,19 @@ const Catalog = ({type = ""}) => {
     const [searchParams] = useSearchParams();   //to parse URL params
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const {addToCart} = useContext(ShoppingCartContext);
     const navigate = useNavigate(); //to push a new page in history
     const ITEMS_PER_PAGE = 6;
 
     useEffect(() => {
-
-        fetch('/api/products')
+        fetch(type === "" ? `/api/products` : `/api/products?type=${type}`)
             .then((response) => response.json())
             .then((fetchedData) => {
-                console.log(fetchedData)
+                setData(fetchedData)
             })
             .catch((err) => {
-                setError(err.message);
-            });
-    }, []);
+                setError(err.message)
+            })
+    }, [type])
 
     const MAX_PAGES = data ? Math.ceil(data.length / ITEMS_PER_PAGE) : 1;
 
@@ -58,7 +58,7 @@ const Catalog = ({type = ""}) => {
                                      img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
                                      desc={currItem.desc}
                                      price={currItem.price}
-                                     onAddToCart={() => addToCart(currItem.title, parseFloat(currItem.price))}
+                                     onAddToCart={() => onAddToCart(currItem.id)}
                         />
                     </Grid>
                 ))}

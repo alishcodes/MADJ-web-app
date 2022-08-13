@@ -30,10 +30,7 @@ public class Product
         this.productType = productType;
     }
 
-    public float getPrice(){
-
-        return price;
-    }
+    public float getPrice(){ return price; }
     public String getTitle(){
         return title;
     }
