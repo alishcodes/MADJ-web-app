@@ -18,10 +18,6 @@ class LoadDatabase {
     CommandLineRunner initDatabase(ProductRepository repository) {
 
         return args -> {
-            /* TODO
-            *   Populate repository with GCloud DB instead
-            * (To do this, all we have to do is create the products from the db values here using the GCloudConnector.
-            * The existing HTTP and ProductRepository setup should function correctly as is) */
             Connection conn = GCloudConnector.getInstance().connection;
 
             String query = "SELECT * FROM products";
