@@ -1,9 +1,17 @@
-import { Drawer, Stack, Divider, Button, IconButton } from '@mui/material';
+import { Drawer, Stack} from '@mui/material';
 import { useContext } from "react";
 import ShoppingCartContext from "../contexts/ShoppingCartContext";
 
+
+/**
+ * Component that renders the shopping cart drawer
+ *
+ * @param cartOpen {boolean}
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const ShoppingCartW = ({cartOpen}) => {
-    const {closeCart} = useContext(ShoppingCartContext);
+    const {closeCart} = useContext(ShoppingCartContext);    //function from ShoppingCartContext to handle cart closure
 
     return (
         <Drawer

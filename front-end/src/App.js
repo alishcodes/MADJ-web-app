@@ -5,7 +5,12 @@ import Catalog from './Catalog';
 import Footer from '../src/Components/Container/Footer';
 import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
 
-//Main app component
+/**
+ * App page that renders the main components for the website
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const App = () => {
     return (
         <BrowserRouter>    {/*Use react-router to link pages*/}

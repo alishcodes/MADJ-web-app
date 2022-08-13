@@ -3,8 +3,13 @@ import FooterC from '../Footer/index'
 import {Facebook, Instagram, Pinterest, YouTube} from "@mui/icons-material";
 
 
-
-const Footer =()=>{
+/**
+ * Component that renders the website footer
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const Footer = () => {
     return(
         <FooterC>
             <FooterC.Wrapper>

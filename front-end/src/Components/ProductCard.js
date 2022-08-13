@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/material';
 
 /**
- * Component to organize product data in a catalog format.
+ * Component to organize product data in a catalog format
  *
  * @returns {JSX.Element}
  * @constructor

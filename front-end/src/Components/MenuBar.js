@@ -11,7 +11,7 @@ import ShoppingCartContext from "../contexts/ShoppingCartContext";
 
 
 /**
- * Displays the website menu bar with product types and shopping cart button.
+ * Component that displays the website menu bar with product types and shopping cart button
  *
  * @returns {JSX.Element}
  * @constructor
@@ -22,11 +22,18 @@ const MenuBar = () => {
     const [openSubMenu, setOpenSubMenu] = useState(false);
     const { openCart } = useContext(ShoppingCartContext);
 
-    /*isOpen = boolean, sets menuOpen state*/
-    const toggleDrawer = (isOpen) => {
+    /**
+     * Sets the menu drawer open or closed
+     *
+     * @param isOpen {boolean}
+     */
+    const handleDrawer = (isOpen) => {
         setMenuOpen(isOpen);
     }
 
+    /**
+     * Toggles the subMenu in menu drawer
+     */
     const toggleSubMenu = () => {
         setOpenSubMenu((!openSubMenu));
     }
@@ -48,7 +55,7 @@ const MenuBar = () => {
                         direction="row"
                         justifyContent="space-between"
                         alignItems="center">
-                        <IconButton size="large" edge="start" onClick={() => toggleDrawer(true)}> {/*When clicked, open=true*/}
+                        <IconButton size="large" edge="start" onClick={() => handleDrawer(true)}> {/*When clicked, open=true*/}
                             <Menu sx={{ color: "#3D5B59" }}/>
                         </IconButton>
                         <Link to={"/"} style={{ textDecoration: 'inherit', color: 'inherit' }}>
@@ -65,7 +72,7 @@ const MenuBar = () => {
             <Drawer
                 anchor='left'
                 open={menuOpen}
-                onClose={() => toggleDrawer(false)}
+                onClose={() => handleDrawer(false)}
             >
                 <Box
                     role="presentation"
@@ -81,7 +88,7 @@ const MenuBar = () => {
                             <List component="div">
                                 {menuItems.map( ( curr, index ) => (
                                     <ListItem component={Link} to={curr.link} key={curr.text} sx={{ padding: "0", margin:"0", textDecoration: 'inherit', color: 'inherit' }}>
-                                        <ListItemButton onClick={() => toggleDrawer(false)} sx={{ padding: "10px", pl: 4 }}>
+                                        <ListItemButton onClick={() => handleDrawer(false)} sx={{ padding: "10px", pl: 4 }}>
                                             <ListItemText primary={curr.text} />
                                         </ListItemButton>
                                     </ListItem>
@@ -90,12 +97,12 @@ const MenuBar = () => {
                             <Divider/>
                         </Collapse>
                         <ListItem component={Link} to={"/catalog/shoes"} sx={{ padding: 0, margin: 0, marginTop: "8px", textDecoration: 'inherit', color: 'inherit' }}>
-                            <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
+                            <ListItemButton onClick={() => handleDrawer(false)} sx={{ pl: 4 }}>
                                 <ListItemText primary={"Shoes"}/>
                             </ListItemButton>
                         </ListItem>
                         <ListItem component={Link} to={"/catalog/accessories"} sx={{ padding: 0, margin: 0, marginTop: "8px", textDecoration: 'inherit', color: 'inherit' }}>
-                            <ListItemButton onClick={() => toggleDrawer(false)} sx={{ pl: 4 }}>
+                            <ListItemButton onClick={() => handleDrawer(false)} sx={{ pl: 4 }}>
                                 <ListItemText primary={"Accessories"}/>
                             </ListItemButton>
                         </ListItem>
