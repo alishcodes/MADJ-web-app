@@ -13,9 +13,7 @@ public class Order{
 
     String email = "", name = "", cardInfo = "";
     float total = 0;
-    int id = 0;
     public ArrayList<ProductInformation> productDump;
-
 
     public Order(String Name, String email, String cardInfo, HashMap<Long,Integer> products){
         productDump = new ArrayList<>();
@@ -36,7 +34,17 @@ public class Order{
         total = orderTotal;
 //Get product information
     }
-    public void sendConfirmation(){
 
+    private String getEmail(){
+        return this.email;
+    }
+    private String getName(){
+        return this.name;
+    }
+    private String getCardInfo(){
+        return this.cardInfo;
+    }
+    private ArrayList<ProductInformation> getProductsInfo(){
+        return this.productDump;
     }
 }

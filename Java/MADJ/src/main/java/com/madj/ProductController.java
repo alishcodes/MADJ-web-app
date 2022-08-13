@@ -15,6 +15,7 @@ class ProductController {
 
     ProductController(ProductRepository repository) {
         this.repository = repository;
+        globalRepository = repository;
     }
 
 
