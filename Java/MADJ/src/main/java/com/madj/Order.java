@@ -10,12 +10,13 @@ public class Order{
         float price;
         String title, desc, img;
     }
-
-    String email = "", name = "", cardInfo = "";
+    String billingName;
+    String billingAddress;
+    String email = "", customerName = "", cardInfo = "";
     float total = 0;
     public ArrayList<ProductInformation> productDump;
 
-    public Order(String Name, String email, String cardInfo, HashMap<Long,Integer> products){
+    public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Long,Integer> products){
         productDump = new ArrayList<>();
         int orderTotal = 0;
         for (Long id : products.keySet()) {
@@ -28,18 +29,25 @@ public class Order{
             working.img = temp.getImg();
             productDump.add(working);
         }
-        this.name = Name;
+        this.billingName = billingName;
+        this.billingAddress = billingAddress;
+        this.customerName = customerName;
         this.email = email;
         this.cardInfo = cardInfo;
         total = orderTotal;
 //Get product information
     }
-
+    private String getBillingName(){
+        return this.billingName;
+    }
+    private String getBillingAddress(){
+        return this.billingAddress;
+    }
     private String getEmail(){
         return this.email;
     }
-    private String getName(){
-        return this.name;
+    private String getCustomerName(){
+        return this.customerName;
     }
     private String getCardInfo(){
         return this.cardInfo;

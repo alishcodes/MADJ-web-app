@@ -21,7 +21,7 @@ public class OrderController {
             orderProducts.put(products.get(i), quantities.get(i));
         }
 
-        Order order = new Order(orderJSONInformation.getName(), orderJSONInformation.getEmail(), orderJSONInformation.getCardInfo(), orderProducts);
+        Order order = new Order(orderJSONInformation.getBillingName(), orderJSONInformation.getBillingAddress(), orderJSONInformation.getCustomerName(), orderJSONInformation.getEmail(), orderJSONInformation.getCardInfo(), orderProducts);
         saveOrderToDB(order);
         sendConfirmationEmail(order);
         System.out.println("Received data: " + orderJSONInformation.toString());

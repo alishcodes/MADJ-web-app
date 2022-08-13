@@ -3,20 +3,37 @@ package com.madj;
 import java.util.List;
 
 public class OrderJSONInformation {
-    private String name;
+    private String billingName;
+    private String billingAddress;
+    private String customerName;
     private String email;
     private String cardInfo;
     private List<Long> productIDs;
     private List<Integer> quantities;
 
     public OrderJSONInformation() {}
-
-    public String getName() {
-        return name;
+    public String getBillingName() {
+        return billingName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBillingName(String billingName) {
+        this.billingName = billingName;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getEmail() {
@@ -52,7 +69,9 @@ public class OrderJSONInformation {
     }
     @Override
     public String toString(){
-        String output = "name: " + this.name +
+        String output = "billing name: " + this.billingName +
+                ", billing address: " + this.billingAddress +
+                ", customer name: " + this.customerName +
                 ", email: " + this.email +
                 ", card info: " +this.cardInfo +
                 ", Product IDs: " + productIDs.toString() +
