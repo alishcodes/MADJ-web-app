@@ -8,7 +8,7 @@ public class OrderJSONInformation {
     private String customerName;
     private String email;
     private String cardInfo;
-    private List<Long> productIDs;
+    private List<Integer> productIDs;
     private List<Integer> quantities;
 
     public OrderJSONInformation() {}
@@ -52,11 +52,11 @@ public class OrderJSONInformation {
         this.cardInfo = cardInfo;
     }
 
-    public List<Long> getProductIDs() {
+    public List<Integer> getProductIDs() {
         return productIDs;
     }
 
-    public void setProductIDs(List<Long> productIDs) {
+    public void setProductIDs(List<Integer> productIDs) {
         this.productIDs = productIDs;
     }
 

@@ -16,13 +16,14 @@ public class Product
         Shoes,
         Accessories
     }
-    @Id @GeneratedValue Long id;
+    @Id int id;
     float price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
     public Product(){}
-    public Product(float price, String title, String desc, String img,
+    public Product(int id, float price, String title, String desc, String img,
                    ProductType productType){
+        this.id = id;
         this.price = price;
         this.title = title;
         this.desc = desc;
@@ -58,10 +59,10 @@ public class Product
     public void setProductType(ProductType productType){
         this.productType = productType;
     }
-    public void setId(Long id){
+    public void setId(int id){
         this.id = id;
     }
-    public Long getId(){
+    public int getId(){
         return this.id;
     }
     @Override

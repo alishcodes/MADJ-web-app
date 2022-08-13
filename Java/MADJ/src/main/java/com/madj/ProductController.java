@@ -46,7 +46,7 @@ class ProductController {
     // Single item
 
     @GetMapping("/products/{id}")
-    Product one(@PathVariable Long id) {
+    Product one(@PathVariable int id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));

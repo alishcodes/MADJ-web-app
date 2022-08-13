@@ -2,7 +2,7 @@ package com.madj;
 
 public class ProductNotFoundException extends RuntimeException {
 
-    ProductNotFoundException(Long id) {
+    ProductNotFoundException(int id) {
         super("Could not find product " + id);
     }
 }

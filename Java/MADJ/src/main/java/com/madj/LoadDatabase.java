@@ -30,26 +30,19 @@ class LoadDatabase {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 String productName = rs.getString("name");
+                int id = rs.getInt("product_id");
                 int productId = rs.getInt("product_id");
                 float price = rs.getFloat("price") / 100;
                 String description = rs.getString("description");
                 int type = rs.getInt("type");
                 String img = rs.getString("img");
                 log.info("Preloading " + repository.save(
-                        new Product(price,
+                        new Product(id,
+                                price,
                                 productName,
                                 description,
                                 img,
                                 Product.ProductType.values()[type])));
-            }
-            if (conn != null)
-            {
-                try
-                {
-                    conn.close ();
-                    System.out.println ("Database connection terminated");
-                }
-                catch (Exception e) { }
             }
         };
     }

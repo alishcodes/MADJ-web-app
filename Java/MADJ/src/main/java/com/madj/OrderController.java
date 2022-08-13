@@ -2,6 +2,9 @@ package com.madj;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,8 +16,8 @@ public class OrderController {
             method = RequestMethod.POST)
    public void ReceiveOrder(@RequestBody OrderJSONInformation orderJSONInformation){
 
-        HashMap<Long, Integer> orderProducts = new HashMap<Long, Integer>();
-        List<Long> products = orderJSONInformation.getProductIDs();
+        HashMap<Integer, Integer> orderProducts = new HashMap<>();
+        List<Integer> products = orderJSONInformation.getProductIDs();
         List<Integer> quantities = orderJSONInformation.getQuantities();
 
         for(int i = 0; i < products.size(); i++){
@@ -30,6 +33,37 @@ public class OrderController {
 
     }
     private void saveOrderToDB(Order order){
+        String query = "INSERT INTO orders (billing_name, billing_address, email_address, customer_name, card_information, total)\n" +
+                " values (" +
+                "\"" + order.getBillingName() + "\"" +
+                ",\"" + order.getBillingAddress() + "\"" +
+                ",\"" + order.getEmail() + "\"" +
+                ",\"" + order.getCustomerName() + "\"" +
+                ",\"" + order.getCardInfo() + "\"" +
+                ",\"" + order.getTotal() + "\"" +
+                ");";
+        try(Statement statement = GCloudConnector.getInstance().connection.createStatement()){
+            statement.executeUpdate(query);
 
+            int orderId = -1;
+            ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID()");
+            if (rs.next()) {
+                orderId = rs.getInt(1);
+            }
+
+            for(Order.ProductInformation product : order.getProductsInfo()){
+                query = "INSERT INTO order_items (order_id, product_id, quantity)\n" +
+                        " values (" +
+                        "\"" + orderId + "\"" +
+                        ",\"" + product.id + "\"" +
+                        ",\"" + product.quantity + "\"" +
+                        ");";
+                statement.executeUpdate(query);
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
