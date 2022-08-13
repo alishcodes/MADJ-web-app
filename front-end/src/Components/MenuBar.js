@@ -45,24 +45,7 @@ const MenuBar = () => {
         { link: "catalog/shorts", text: 'Shorts'},
         { link: "catalog/pants", text: 'Pants'}
     ];
-    fetch('/api/send-order', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body:
-            JSON.stringify({
-                billingName: 'Joe',
-                billingAddress: '628 ex street',
-          customerName: 'Mike',
-          email: 'anemail',
-          cardInfo: '8235',
-          productIDs: [1, 2, 3],
-          quantities: [8, 4, 3]
-        })
-        
-      })
+
     return (
         <div>
             <AppBar position="static" color="default">  {/*AppBar has shadows*/}
