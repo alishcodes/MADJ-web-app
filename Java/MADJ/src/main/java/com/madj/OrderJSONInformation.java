@@ -50,4 +50,13 @@ public class OrderJSONInformation {
     public void setQuantities(List<Integer> quantities) {
         this.quantities = quantities;
     }
+    @Override
+    public String toString(){
+        String output = "name: " + this.name +
+                ", email: " + this.email +
+                ", card info: " +this.cardInfo +
+                ", Product IDs: " + productIDs.toString() +
+                ", Quantities: " + quantities.toString();
+        return output;
+    }
 }
