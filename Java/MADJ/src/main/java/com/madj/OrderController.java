@@ -40,7 +40,7 @@ public class OrderController {
                 ",\"" + order.getEmail() + "\"" +
                 ",\"" + order.getCustomerName() + "\"" +
                 ",\"" + order.getCardInfo() + "\"" +
-                ",\"" + order.getTotal() + "\"" +
+                ",\"" + order.getTotal() * 100 + "\"" +
                 ");";
         try(Statement statement = GCloudConnector.getInstance().connection.createStatement()){
             statement.executeUpdate(query);
