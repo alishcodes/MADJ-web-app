@@ -1,7 +1,7 @@
 package com.madj;
 
 import java.util.List;
-
+// Order JSON file builder
 public class OrderJSONInformation {
     private String billingName;
     private String billingAddress;

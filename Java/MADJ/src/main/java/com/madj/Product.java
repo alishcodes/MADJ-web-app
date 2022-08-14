@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 @Entity
+// Class to create template for all products
 public class Product
 {
+    //enumerated variables to sort products by type
     public enum ProductType{
         Tops,
         Outerwear,
@@ -16,11 +18,13 @@ public class Product
         Shoes,
         Accessories
     }
+    //Product ID number from Database, as well as var declarations for product constructor use
     @Id int id;
     int price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
     public Product(){}
+    // Product constructor
     public Product(int id, int price, String title, String desc, String img,
                    ProductType productType){
         this.id = id;
@@ -30,7 +34,7 @@ public class Product
         this.img = img;
         this.productType = productType;
     }
-
+    // Front End Data Call Functions
     public int getPrice(){ return price; }
     public String getTitle(){
         return title;
@@ -44,6 +48,7 @@ public class Product
     public ProductType getProductType(){
         return productType;
     }
+    // Modify Data Functions
     public void setTitle(String title){
         this.title = title;
     }
@@ -65,6 +70,7 @@ public class Product
     public int getId(){
         return this.id;
     }
+    //Function to sift through DB and find a certain product
     @Override
     public boolean equals(Object o) {
 
@@ -80,10 +86,12 @@ public class Product
                 && Objects.equals(this.productType, product.productType)
                 && Objects.equals(this.img, product.img);
     }
+    // Hash objects to store Ids in relation to relevant title , price etc.
     @Override
     public int hashCode() {
         return Objects.hash(this.id, this.title, this.desc, this.price, this.productType, this.img);
     }
+    // function to return a product values as a string
     public String toString(){
         return "Product{" +
                 "id=" + this.id +

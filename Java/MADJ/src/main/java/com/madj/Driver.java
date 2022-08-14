@@ -12,6 +12,7 @@ public class Driver
 {
     public static void main (String[] args)
     {
+        // SpringBoot Starts
         SpringApplication.run(Driver.class, args);
         Runtime.getRuntime().addShutdownHook(new Thread()
         {
