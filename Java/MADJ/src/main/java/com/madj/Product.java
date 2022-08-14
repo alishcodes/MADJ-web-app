@@ -17,11 +17,11 @@ public class Product
         Accessories
     }
     @Id int id;
-    float price = 0;
+    int price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
     public Product(){}
-    public Product(int id, float price, String title, String desc, String img,
+    public Product(int id, int price, String title, String desc, String img,
                    ProductType productType){
         this.id = id;
         this.price = price;
@@ -31,7 +31,7 @@ public class Product
         this.productType = productType;
     }
 
-    public float getPrice(){ return price; }
+    public int getPrice(){ return price; }
     public String getTitle(){
         return title;
     }
@@ -53,7 +53,7 @@ public class Product
     public void setImg(String img){
         this.img = img;
     }
-    public void setPrice(float price){
+    public void setPrice(int price){
         this.price = price;
     }
     public void setProductType(ProductType productType){
@@ -89,7 +89,7 @@ public class Product
                 "id=" + this.id +
                 ", title='" + this.title + '\'' +
                 ", desc='" + this.desc + '\'' +
-                ", price=" + this.price +
+                ", price=" + (((float)this.price) / 100) +
                 ", type="+this.productType.ordinal() +
                 ", img='" + this.img + '\'' +
                 '}';

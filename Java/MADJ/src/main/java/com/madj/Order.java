@@ -9,13 +9,13 @@ public class Order{
     public class ProductInformation {
         int id;
         int quantity;
-        float price;
+        int price;
         String title, desc, img;
     }
     String billingName;
     String billingAddress;
     String email = "", customerName = "", cardInfo = "";
-    float total = 0;
+    int total = 0;
     public ArrayList<ProductInformation> productDump;
 
     public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Integer, Integer> products){
@@ -59,7 +59,7 @@ public class Order{
     public ArrayList<ProductInformation> getProductsInfo(){
         return this.productDump;
     }
-    public float getTotal(){
+    public int getTotal(){
         return this.total;
     }
 }

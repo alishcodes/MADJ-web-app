@@ -28,7 +28,7 @@ class LoadDatabase {
                 String productName = rs.getString("name");
                 int id = rs.getInt("product_id");
                 int productId = rs.getInt("product_id");
-                float price = rs.getFloat("price") / 100;
+                int price = rs.getInt("price");
                 String description = rs.getString("description");
                 int type = rs.getInt("type");
                 String img = rs.getString("img");
