@@ -14,6 +14,15 @@ import java.sql.Statement;
 class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+
+    /**
+     * Method to initialize the database. Loads the values from Google Cloud database into the local H2 product repository. Called automatically when the server starts.
+     * @param repository The server's local H2 product repository.
+     * @return Code to run on server boot.
+     * @see Product
+     * @see ProductRepository
+     * @see GCloudConnector
+     */
     @Bean
     CommandLineRunner initDatabase(ProductRepository repository) {
 

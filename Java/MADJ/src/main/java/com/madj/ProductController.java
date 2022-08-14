@@ -18,7 +18,11 @@ class ProductController {
         globalRepository = repository;
     }
 
-
+    /**
+     * Get list of products method, mapped to /api/products.
+     * @param type Optional type parameter to search for all products of a type instead.
+     * @return List of products from server's local H2 database.
+     */
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping(value = "/products")
@@ -45,6 +49,11 @@ class ProductController {
 
     // Single item
 
+    /**
+     * Get single product by id, mapped to /api/products/{id}
+     * @param id The id to search for.
+     * @return Product requested, if it exists.
+     */
     @GetMapping("/products/{id}")
     Product one(@PathVariable int id) {
 
