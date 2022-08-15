@@ -43,7 +43,7 @@ public class OrderController {
         System.out.println("Received data: " + orderJSONInformation.toString());
     }
     private void sendConfirmationEmail(Order order){
-
+        Mailer.send(order.getEmail(), "MADJ Order Confirmation", "<h1>Thank you for your order.</h1>");
     }
     private void saveOrderToDB(Order order){
         String query = "INSERT INTO orders (billing_name, billing_address, email_address, customer_name, card_information, total)\n" +
