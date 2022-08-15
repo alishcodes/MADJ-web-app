@@ -18,11 +18,13 @@ export function ShoppingCartProvider({ children }) {
     const openCart = () => setCartOpen(true);
     const closeCart = () => setCartOpen(false);
 
+
+
     return (
         <ShoppingCartContext.Provider
             value={{
                 openCart,
-                closeCart
+                closeCart,
             }}>
             {children}
             <ShoppingCartW cartOpen={cartOpen}/>
