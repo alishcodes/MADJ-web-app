@@ -4,7 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
-
+/**
+ * Rest controller for products to handle front-end and back-end connection. All methods are mapped to <b>/api</b>.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-11
+ * @see Product
+ * @see RestController
+ */
 @RestController
 @RequestMapping("/api")
 class ProductController {
@@ -18,7 +26,11 @@ class ProductController {
         globalRepository = repository;
     }
 
-
+    /**
+     * Get list of products method, mapped to <b>/api/products</b>. Called from api using GET request.
+     * @param type Optional type parameter to search for all products of a type instead. Included as a parameter in the request's path/url.
+     * @return List of products from server's local H2 database.
+     */
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping(value = "/products")
@@ -45,6 +57,11 @@ class ProductController {
 
     // Single item
 
+    /**
+     * Get single product by id, mapped to <b>/api/products/{id}</b>. Called from api using GET request.
+     * @param id The id to search for. Included in the request's path/url.
+     * @return Product requested, if it exists.
+     */
     @GetMapping("/products/{id}")
     Product one(@PathVariable int id) {
 
