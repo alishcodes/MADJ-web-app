@@ -3,9 +3,14 @@ package com.madj;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Order class to hold all order information.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-11
+ */
 public class Order{
-// Class to form template for Products fed into Order info
     public class ProductInformation {
         int id;
         int quantity;

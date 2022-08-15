@@ -7,10 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * Rest controller for orders to handle front-end and back-end connection. All methods are mapped to <b>/api</b>.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-11
+ * @see Order
+ * @see RestController
+ */
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+    /**
+     * Method to send order information to server from client. Mapped to <b>/api/send-order</b>. Called from api using POST request.
+     * @param orderJSONInformation JSON formatted to fit the OrderJSONInformation properties. Included in the request's body.
+     * @see OrderJSONInformation
+     */
     @RequestMapping(
             value = "send-order",
             method = RequestMethod.POST)

@@ -1,7 +1,14 @@
 package com.madj;
 
 import java.util.List;
-// Order JSON file builder
+
+/**
+ * Order information class to hold all order information sent through JSON. Formatted to be compatible with Spring Boot automation.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-12
+ */
 public class OrderJSONInformation {
     private String billingName;
     private String billingAddress;

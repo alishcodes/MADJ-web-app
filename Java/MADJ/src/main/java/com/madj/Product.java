@@ -5,8 +5,15 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+/**
+ * Product class to hold all product information. Formatted to be compatible with H2 database and Spring Boot automation.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-10
+ */
 @Entity
-// Class to create template for all products
 public class Product
 {
     //enumerated variables to sort products by type

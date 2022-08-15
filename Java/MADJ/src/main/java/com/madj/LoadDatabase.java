@@ -9,14 +9,20 @@ import org.springframework.context.annotation.Configuration;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+/**
+ * Spring Boot configuration for loading local H2 database with Google Cloud database values.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-10
+ */
 @Configuration
 class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     /**
-     * Method to initialize the database. Loads the values from Google Cloud database into the local H2 product repository. Called automatically when the server starts.
+     * Method to initialize database. Loads the values from Google Cloud database into the local H2 product repository. Called automatically when the server starts.
      * @param repository The server's local H2 product repository.
      * @return Code to run on server boot.
      * @see Product

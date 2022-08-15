@@ -3,6 +3,14 @@ package com.madj;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Singleton class to handle Google Cloud connection, since only one connection should be active at a time.
+ * @author  Jonathan Navarro
+ * @author Mitchel Mercer
+ * @version 1.0
+ * @since 2022-08-11
+ * @see Connection
+ */
 public class GCloudConnector {
 
     private static GCloudConnector instance;
