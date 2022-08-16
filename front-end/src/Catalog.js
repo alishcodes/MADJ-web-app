@@ -55,9 +55,9 @@ const Catalog = ({type = ""}) => {
                 {data && data.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((currItem, index) => (
                     <Grid item xs={12} sm={6} md={6} lg={4} key={currItem.id}>
                         <ProductCard title={currItem.title}
-                                     img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
+                                     img={currItem.img}
                                      desc={currItem.desc}
-                                     price={currItem.price}
+                                     price={parseFloat(currItem.price / 100)}
                                      onAddToCart={() => onAddToCart(currItem.id)}
                         />
                     </Grid>

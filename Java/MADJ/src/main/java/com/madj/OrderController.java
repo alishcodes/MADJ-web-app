@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 /**
@@ -43,7 +44,25 @@ public class OrderController {
         System.out.println("Received data: " + orderJSONInformation.toString());
     }
     private void sendConfirmationEmail(Order order){
-        Mailer.send(order.getEmail(), "MADJ Order Confirmation", "<h1>Thank you for your order.</h1>");
+        String body = "<h1>Thank you for your order, " + order.getCustomerName() + ".</h1>\n" +
+                "<p>\n" +
+                "Billing name: \n" + order.getBillingName() +
+                "</p>\n" +
+                "<p>\n" +
+                "Billing address: \n" + order.getBillingAddress() +
+                "</p>\n" +
+                "<p>\n" +
+                "Customer name: \n" + order.getCustomerName() +
+                "</p>" +
+                "<p>\n" +
+                "Total: $" + (((float)order.getTotal()) / 100) +
+                "</p>";
+        body += "<p><h3><u>Products</u><h3></p>";
+        ArrayList<Order.ProductInformation> products = order.getProductsInfo();
+        for(int i = 0; i < order.getProductsInfo().size(); i++){
+            body += products.get(i).getAsHTMLText();
+        }
+        Mailer.send(order.getEmail(), "MADJ Order Confirmation", body);
     }
     private void saveOrderToDB(Order order){
         String query = "INSERT INTO orders (billing_name, billing_address, email_address, customer_name, card_information, total)\n" +
