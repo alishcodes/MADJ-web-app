@@ -5,6 +5,7 @@ import Catalog from './Catalog';
 import Footer from '../src/Components/Container/Footer';
 import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
 import CheckoutPage from "./Components/checkoutPages/CheckoutPage";
+import Success from "./Components/checkoutPages/Success";
 
 /**
  * App page that renders the main components for the website
@@ -27,7 +28,8 @@ const App = () => {
                         <Route path={"/catalog/pants"} element={<Catalog type={"Pants"}/>}/>
                         <Route path={"/catalog/shoes"} element={<Catalog type={"Shoes"}/>}/>
                         <Route path={"/catalog/accessories"} element={<Catalog type={"Accessories"}/>}/>
-                        <Route path={"/Checkout"} element={<CheckoutPage/>}/>
+                        <Route path={"/checkout"} element={<CheckoutPage/>}/>
+                        <Route path={"/success"} element={<Success/>}/>
                         <Route path={"*"} element={<h3>Page Not Found</h3>}/>
                     </Routes>
                     <Footer/>

@@ -17,9 +17,6 @@ export function ShoppingCartProvider({ children }) {
     const [cartOpen, setCartOpen] = useState(false);
     const [items, setItems] = useState([]);
 
-
-
-
     const openCart = () => setCartOpen(true);
     const closeCart = () => setCartOpen(false);
 

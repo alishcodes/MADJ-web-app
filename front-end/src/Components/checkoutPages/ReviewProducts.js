@@ -33,8 +33,9 @@ const ReviewProducts = () => {
                     ))}
                     <Divider flexItem/>
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <Typography>Total: ${calcTotal()}</Typography>
-                </Stack>
+                        <Typography>Total: </Typography>
+                        <Typography>${calcTotal()}</Typography>
+                    </Stack>
                 </Stack>
             </Paper>
         </Stack>

@@ -62,8 +62,6 @@ const Catalog = ({type = ""}) => {
                                      desc={currItem.desc}
                                      price={parseFloat(currItem.price / 100).toFixed(2)}
                                      onAddToCart={() => addToCart( currItem.id, currItem.title, parseFloat(currItem.price / 100))}
-
-
                         />
                     </Grid>
                 ))}

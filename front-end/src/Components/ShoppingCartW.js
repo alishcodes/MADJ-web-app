@@ -48,7 +48,7 @@ export const ShoppingCartW = ({cartOpen}) => {
                     <div key={item.id} className="row">
                         <Divider flexItem/>
                         <Typography>{item.title}</Typography>
-                        <Typography>{item.qty}x ${item.price}</Typography>
+                        <Typography>{item.qty} x ${item.price}</Typography>
                         <div>
                             <Button  variant="outlined" onClick={() => addToCart(item.id, item.title, item.price)} className="add">+</Button>
                             <Button  variant="outlined" onClick={() => removeFromCart(item.id, item.title, item.price)}className="Remove">-</Button>
@@ -57,16 +57,13 @@ export const ShoppingCartW = ({cartOpen}) => {
                     </div>
 
                 ))}
-
-                    </Stack>
-
-
-        <Stack>
-            <Typography variant="h6">Total: ${calcTotal()} </Typography>
-            <Link to={"Checkout"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
-                <Button onClick={closeCart}>Continue to Checkout</Button>
-            </Link>
-                    </Stack>
+            </Stack>
+            <Stack>
+                <Typography variant="h6">Total: ${calcTotal()} </Typography>
+                <Link to={"/checkout"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
+                    <Button onClick={closeCart}>Continue to Checkout</Button>
+                </Link>
+            </Stack>
         </Drawer>
 
     )

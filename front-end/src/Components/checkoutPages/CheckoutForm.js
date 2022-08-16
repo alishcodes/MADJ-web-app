@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {useFormik} from "formik";
 import {TextField, Button, Paper, Grid, Divider, Typography, Container, Stack} from '@mui/material';
 import shoppingCartContext from "../../contexts/ShoppingCartContext";
+import {Link} from "react-router-dom";
 
 
 /**
@@ -223,7 +224,9 @@ const CheckoutForm = () => {
                         </Grid>
                     </Grid>
                 </Paper>
-                <Button type="submit" color="inherit" variant="outlined" size={"large"} sx={{ marginTop: "10px"}}>Submit</Button>
+                <Link to={"/success"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
+                    <Button type="submit" color="inherit" variant="outlined" size={"large"} sx={{ marginTop: "10px"}}>Submit</Button>
+                </Link>
             </Stack>
 
         </form>
