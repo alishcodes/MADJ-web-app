@@ -14,7 +14,7 @@ const ReviewProducts = () => {
     const calcTotal = () => {
         let total = 0.0;
         items.map((curr) => (
-            total += parseFloat(curr.qty * curr.price)
+            total += parseFloat((curr.qty * curr.price))
         ))
 
         return total.toFixed(2);

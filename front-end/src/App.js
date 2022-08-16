@@ -4,8 +4,6 @@ import MenuBar from './Components/MenuBar';
 import Catalog from './Catalog';
 import Footer from '../src/Components/Container/Footer';
 import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
-import CheckoutPage from "./checkoutPages/CheckoutPage";
-
 import CheckoutPage from "./Components/checkoutPages/CheckoutPage";
 
 /**
@@ -22,7 +20,6 @@ const App = () => {
                     <MenuBar/>
                     <Routes>    {/*Route paths go here*/}
                         <Route path={"/"} element={<VideoMain/>}/>
-                        <Route path={"/checkout"} element={<CheckoutPage/>}/>
                         <Route path={"/catalog"} element={<Catalog/>}/>
                         <Route path={"/catalog/tops"} element={<Catalog type={"Tops"}/>}/>
                         <Route path={"/catalog/outerwear"} element={<Catalog type={"Outerwear"}/>}/>

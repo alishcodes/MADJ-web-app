@@ -5,10 +5,6 @@ import { ShoppingCartW } from "../Components/ShoppingCartW";
 const ShoppingCartContext = createContext();
 
 
-<<<<<<< Updated upstream
-const ShoppingCartContext = createContext({});
-=======
->>>>>>> Stashed changes
 
 /**
  * Shares data about the shopping cart between child nodes
@@ -20,11 +16,9 @@ const ShoppingCartContext = createContext({});
 export function ShoppingCartProvider({ children }) {
     const [cartOpen, setCartOpen] = useState(false);
     const [items, setItems] = useState([]);
-<<<<<<< Updated upstream
-=======
-    // const [total, setTotal] = useState(0);
 
->>>>>>> Stashed changes
+
+
 
     const openCart = () => setCartOpen(true);
     const closeCart = () => setCartOpen(false);
@@ -58,11 +52,7 @@ export function ShoppingCartProvider({ children }) {
                 closeCart,
                 items,
                 addToCart,
-<<<<<<< Updated upstream
-                removeFromCart,
-=======
                 removeFromCart
->>>>>>> Stashed changes
             }}>
             {children}
             <ShoppingCartW cartOpen={cartOpen}/>
