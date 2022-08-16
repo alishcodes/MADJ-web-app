@@ -5,10 +5,10 @@ import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/ma
  *
  * @returns {JSX.Element}
  * @constructor
- * @param title {string} The text above description
- * @param desc {string} The text body of the card
- * @param img {string} A url to an image
- * @param price {float}
+ * @param {string} title The text above description
+ * @param {string} desc The text body of the card
+ * @param {string} img A url to an image
+ * @param {float} price
  * @param onAddToCart Function to update if clicked
  */
 const ProductCard = ({title, desc, img, price, onAddToCart}) => {

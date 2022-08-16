@@ -6,12 +6,10 @@ import {useNavigate, useSearchParams} from "react-router-dom";
 import ShoppingCartContext from "./contexts/ShoppingCartContext";
 
 
-
-
 /**
  * Page that displays products
  *
- * @param type {string} the type of products to display; default = "" (all)
+ * @param {string} type the type of products to display; default = "" (all)
  */
 const Catalog = ({type = ""}) => {
     const [searchParams] = useSearchParams();   //to parse URL params

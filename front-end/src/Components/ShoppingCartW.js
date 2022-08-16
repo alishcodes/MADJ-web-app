@@ -17,6 +17,10 @@ export const ShoppingCartW = ({cartOpen}) => {
     const {closeCart} = useContext(ShoppingCartContext);    //function from ShoppingCartContext to handle cart closure
     const {items, addToCart,removeFromCart} = useContext(ShoppingCartContext);
 
+    /**
+     * Calculates total from items in cart
+     * @returns {string} total
+     */
     const calcTotal = () => {
         let total = 0.0;
         items.map((curr) => (

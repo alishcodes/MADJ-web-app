@@ -38,6 +38,9 @@ const MenuBar = () => {
         setOpenSubMenu((!openSubMenu));
     }
 
+    /**
+     * List of clothing types and their links in the drop-down menu.
+     */
     const menuItems = [
         { link: "catalog", text: 'All' },
         { link: "catalog/tops", text: 'Tops' },
