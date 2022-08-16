@@ -11,6 +11,9 @@ import java.util.HashMap;
  * @since 2022-08-11
  */
 public class Order{
+    /**
+     * Product information to store product information and quantity in order
+     */
     public class ProductInformation {
         /**
          * Product's id
