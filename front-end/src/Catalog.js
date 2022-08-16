@@ -1,9 +1,18 @@
 import {Grid, Stack, Pagination, Divider } from '@mui/material';
 import ProductCard from './Components/ProductCard';
+<<<<<<< Updated upstream
 import React, {useContext} from 'react';
 import { useEffect, useState } from 'react';
 import {useNavigate, useSearchParams} from "react-router-dom";
 import ShoppingCartContext from "./contexts/ShoppingCartContext";
+=======
+import React from 'react';
+import { useEffect, useState, useContext } from 'react';
+import {useNavigate, useSearchParams} from "react-router-dom";
+import ShoppingCartContext from "./contexts/ShoppingCartContext";
+
+
+>>>>>>> Stashed changes
 
 
 /**
@@ -15,9 +24,11 @@ const Catalog = ({type = ""}) => {
     const [searchParams] = useSearchParams();   //to parse URL params
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
+    const {addToCart} = useContext(ShoppingCartContext);
     const navigate = useNavigate(); //to push a new page in history
     const ITEMS_PER_PAGE = 6;
     const {addToCart} = useContext(ShoppingCartContext);
+
 
 
     useEffect(() => {
@@ -57,8 +68,13 @@ const Catalog = ({type = ""}) => {
                         <ProductCard title={currItem.title}
                                      img={currItem.img}
                                      desc={currItem.desc}
+<<<<<<< Updated upstream
                                      price={parseFloat(currItem.price / 100).toFixed(2)}
                                      onAddToCart={() => addToCart( currItem.id, currItem.title, parseFloat(currItem.price / 100))}
+=======
+                                     price={parseFloat(currItem.price / 100)}
+                                     onAddToCart={() => addToCart(currItem.id, currItem.title,currItem.price)}
+>>>>>>> Stashed changes
                         />
                     </Grid>
                 ))}

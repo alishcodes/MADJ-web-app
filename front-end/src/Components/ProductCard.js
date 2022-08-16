@@ -12,6 +12,7 @@ import { Card, CardContent, CardMedia, Button, Typography, Stack } from '@mui/ma
  * @param onAddToCart Function to update if clicked
  */
 const ProductCard = ({title, desc, img, price, onAddToCart}) => {
+
     return (
         <Card>
             <CardMedia component="img"
@@ -28,6 +29,7 @@ const ProductCard = ({title, desc, img, price, onAddToCart}) => {
                 <Stack direction="row" alignItems="center" justifyContent="space-between" paddingTop="20px">
                     <Typography fontWeight="bold" color="text.secondary">${price}</Typography>
                     <Button sx={{ color: 'inherit' }} onClick={onAddToCart}>Add to Cart</Button>
+
                 </Stack>
             </CardContent>
         </Card>
