@@ -1,6 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {useFormik} from "formik";
-import {TextField, Button, Paper, Grid, Divider, Typography, Container, Stack} from '@mui/material';
+import {TextField, Button, Paper, Grid, Divider, Typography, Stack} from '@mui/material';
 import shoppingCartContext from "../contexts/ShoppingCartContext";
 
 
@@ -15,7 +15,7 @@ const CheckoutForm = () => {
     const cartIds = [];
     const cartQty = [];
 
-    items.map((curr, index) => {
+    items.map((curr) => {
         cartIds.push(curr.id);
         cartQty.push(curr.qty);
     })

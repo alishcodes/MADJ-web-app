@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import {
-    IconButton, Typography, Stack, AppBar, 
+    IconButton, Typography, Stack, AppBar,
     Drawer, Box, List, ListItem, ListItemButton,
     ListItemText, Divider, Toolbar, Collapse
 } from "@mui/material";
@@ -20,7 +20,7 @@ const MenuBar = () => {
     /*Initialize menuOpen to false and func to set state*/
     const [menuOpen, setMenuOpen] = useState(false);
     const [openSubMenu, setOpenSubMenu] = useState(false);
-    const { openCart } = useContext(ShoppingCartContext);
+    const { openCart, items } = useContext(ShoppingCartContext);
 
     /**
      * Sets the menu drawer open or closed
@@ -63,9 +63,11 @@ const MenuBar = () => {
                                 Sprint
                             </Typography>
                         </Link>
-                        <IconButton  size="large" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={openCart}>
+                        <IconButton  size="small" sx={{ textDecoration: 'inherit', color: 'inherit' }} onClick={openCart}>
                             <ShoppingCart sx={{ color: "#3D5B59" }}/>
+                            <div>{items.length}</div>
                         </IconButton>
+
                     </Stack>
                 </Toolbar>
             </AppBar>

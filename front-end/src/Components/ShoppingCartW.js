@@ -1,6 +1,7 @@
-import {Drawer, Stack, Paper, Typography, Button} from '@mui/material';
-import {useContext, useEffect} from "react";
+import {Button, Drawer, Stack, Typography} from '@mui/material';
+import {useContext} from "react";
 import ShoppingCartContext from "../contexts/ShoppingCartContext";
+import React from 'react';
 import {Link} from "react-router-dom";
 
 
@@ -13,7 +14,7 @@ import {Link} from "react-router-dom";
  */
 export const ShoppingCartW = ({cartOpen}) => {
     const {closeCart} = useContext(ShoppingCartContext);    //function from ShoppingCartContext to handle cart closure
-    const {items, addToCart, removeFromCart} = useContext(ShoppingCartContext);
+    const {items, addToCart,removeFromCart} = useContext(ShoppingCartContext);
 
     const calcTotal = () => {
         let total = 0.0;
@@ -25,25 +26,43 @@ export const ShoppingCartW = ({cartOpen}) => {
     }
 
     calcTotal()
+
     return (
         <Drawer
             anchor={"right"}
             open={cartOpen}
             onClose={closeCart}
         >
+
+            <Typography variant="h3" >Shopping Cart</Typography>
+            <div>{items.length === 0 && <Typography variant="h6" position= "absolute" top =" 50%"  left = "50%"
+                transform = "translate(-50%, -50%) " >Cart is empty</Typography>}</div>
             <Stack
                 flex={1}
                 spacing={2}
                 sx={{ minWidth: "500px", padding: "20px" }}
-                direction="column"
             >
-                <Typography variant="h3">Shopping Cart</Typography>
-                <div>{items.length === 0 && <Typography variant="h6">Cart is empty</Typography>}</div>
-                <Typography variant="h6">Total: ${calcTotal()}</Typography>
-                <Paper>
+                {items.map((item) => (
+                    <div key={item.id} className="row">
 
-                </Paper>
+                        <Typography>{item.title}</Typography>
+                        <Typography>{item.qty}x ${item.price}</Typography>
+                        <div>
+                            <Button  variant="outlined" onClick={() => addToCart(item.id, item.title, item.price)} className="add">+</Button>
+                            <Button  variant="outlined" onClick={() => removeFromCart(item.id, item.title, item.price)}className="Remove">-</Button>
+                        </div>
+
+                    </div>
+                ))}
+
+
             </Stack>
+            <Typography variant="h6">Total: ${calcTotal()}</Typography>
+            <Link to={"Checkout"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
+                <Button onClick={closeCart}>Checkout</Button>
+            </Link>
         </Drawer>
+
     )
 }
+
