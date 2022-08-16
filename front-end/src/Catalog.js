@@ -1,12 +1,10 @@
 import {Grid, Stack, Pagination, Divider } from '@mui/material';
 import ProductCard from './Components/ProductCard';
-import React from 'react';
+import React, {useContext} from 'react';
 import { useEffect, useState } from 'react';
 import {useNavigate, useSearchParams} from "react-router-dom";
+import ShoppingCartContext from "./contexts/ShoppingCartContext";
 
-const onAddToCart = (id) => {
-    console.log(id);
-}
 
 /**
  * Page that displays products
@@ -19,6 +17,8 @@ const Catalog = ({type = ""}) => {
     const [error, setError] = useState(null);
     const navigate = useNavigate(); //to push a new page in history
     const ITEMS_PER_PAGE = 6;
+    const {addToCart} = useContext(ShoppingCartContext);
+
 
     useEffect(() => {
         fetch(type === "" ? `/api/products` : `/api/products?type=${type}`)
@@ -55,10 +55,10 @@ const Catalog = ({type = ""}) => {
                 {data && data.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((currItem, index) => (
                     <Grid item xs={12} sm={6} md={6} lg={4} key={currItem.id}>
                         <ProductCard title={currItem.title}
-                                     img={"https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/productsArea_itemimg_16_m.jpg?220211"}
+                                     img={currItem.img}
                                      desc={currItem.desc}
-                                     price={currItem.price}
-                                     onAddToCart={() => onAddToCart(currItem.id)}
+                                     price={parseFloat(currItem.price / 100).toFixed(2)}
+                                     onAddToCart={() => addToCart(currItem.id, currItem.title, parseFloat(currItem.price / 100).toFixed(2))}
                         />
                     </Grid>
                 ))}

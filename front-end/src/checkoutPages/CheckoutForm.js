@@ -1,6 +1,7 @@
-import React, { useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useFormik} from "formik";
 import {TextField, Button, Paper, Grid, Divider, Typography, Container, Stack} from '@mui/material';
+import shoppingCartContext from "../contexts/ShoppingCartContext";
 
 
 /**
@@ -10,6 +11,14 @@ import {TextField, Button, Paper, Grid, Divider, Typography, Container, Stack} f
  * @constructor
  */
 const CheckoutForm = () => {
+    const {items} = useContext(shoppingCartContext);
+    const cartIds = [];
+    const cartQty = [];
+
+    items.map((curr, index) => {
+        cartIds.push(curr.id);
+        cartQty.push(curr.qty);
+    })
 
     /**
      * Function to pass useFormik() hook initial form variables.
@@ -31,8 +40,8 @@ const CheckoutForm = () => {
             billingLName: "",
             cardNumber: "",
             cardCCV: "",
-            productIDs: [4, 5, 7],
-            quantities: [1, 2, 4]
+            productIDs: [],
+            quantities: []
         },
         onSubmit: (values) => {
             fetch('/api/send-order', {
@@ -47,8 +56,8 @@ const CheckoutForm = () => {
                     customerName: `${values.firstName} ${values.firstName}`,
                     email: values.email,
                     cardInfo: `${values.cardNumber}, ${values.cardCCV}`,
-                    productIDs: values.productIDs,
-                    quantities: values.quantities
+                    productIDs: cartIds,
+                    quantities: cartQty
                 })
             })
          }
