@@ -31,7 +31,7 @@ const CheckoutForm = () => {
             billingLName: "",
             cardNumber: "",
             cardCCV: "",
-            productIDs: [4, 5, 7],
+            productIDs: [381, 382, 383],
             quantities: [1, 2, 4]
         },
         onSubmit: (values) => {
