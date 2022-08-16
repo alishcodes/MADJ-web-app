@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {useFormik} from "formik";
-import {TextField, Button, Paper, Grid, Divider, Typography, Container, Stack} from '@mui/material';
+import {TextField, Button, Paper, Grid, Divider, Typography, Stack} from '@mui/material';
 import shoppingCartContext from "../../contexts/ShoppingCartContext";
-import {Link} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 
 /**
@@ -15,11 +15,13 @@ const CheckoutForm = () => {
     const {items} = useContext(shoppingCartContext);
     const cartIds = [];
     const cartQty = [];
+    const navigate = useNavigate();
 
     items.map((curr) => {
         cartIds.push(curr.id);
         cartQty.push(curr.qty);
     })
+
 
     /**
      * Function to pass useFormik() hook initial form variables.
@@ -61,14 +63,18 @@ const CheckoutForm = () => {
                     quantities: cartQty
                 })
             })
+            navigateSuccess()
         }
     });
 
-
+    const navigateSuccess = () => {
+        navigate('/success');
+    }
 
 
     return (
         <form
+            name="submitForm"
             onSubmit={formik.handleSubmit}
         >
             <Stack justifyContent={"center"} alignItems="center" padding={10} paddingRight={0} direction={"column"} spacing={4}>
@@ -224,9 +230,7 @@ const CheckoutForm = () => {
                         </Grid>
                     </Grid>
                 </Paper>
-                <Link to={"/success"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
-                    <Button type="submit" color="inherit" variant="outlined" size={"large"} sx={{ marginTop: "10px"}}>Submit</Button>
-                </Link>
+                <Button type="submit" color="inherit" variant="outlined" size={"large"} sx={{ marginTop: "10px"}}>Submit</Button>
             </Stack>
 
         </form>
