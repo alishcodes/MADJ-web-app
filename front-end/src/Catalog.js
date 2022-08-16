@@ -22,7 +22,9 @@ const Catalog = ({type = ""}) => {
     const {addToCart} = useContext(ShoppingCartContext);
 
 
-
+    /**
+     * Function that fetches products from database depending on type
+     */
     useEffect(() => {
         fetch(type === "" ? `/api/products` : `/api/products?type=${type}`)
             .then((response) => response.json())

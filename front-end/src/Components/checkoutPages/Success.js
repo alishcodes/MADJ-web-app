@@ -1,5 +1,11 @@
 import {Typography, Container} from "@mui/material";
 
+/**
+ * Component that renders the Success page upon form submission
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Success = () => {
     return (
         <Container sx={{padding: "250px", textAlign: "center"}}>

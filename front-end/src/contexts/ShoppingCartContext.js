@@ -20,6 +20,14 @@ export function ShoppingCartProvider({ children }) {
     const openCart = () => setCartOpen(true);
     const closeCart = () => setCartOpen(false);
 
+    /**
+     * Checks if id already exists and if found, increments quantity.
+     * else, pushes the id, title, price, and adds a quantity attribute.
+     *
+     * @param id
+     * @param title
+     * @param price
+     */
     const addToCart = (id, title, price) => {
         const exist = items.find(x => x.id === id);
         if (exist) {
@@ -30,6 +38,13 @@ export function ShoppingCartProvider({ children }) {
         }
     }
 
+    /**
+     * Checks if id already exists and decrements quantity
+     * then finds index of id in items and if qty = 1,
+     * remove the product and update list of items.
+     *
+     * @param id
+     */
     const removeFromCart = (id) => {
         const exist = items.find(x => x.id === id);
         if (exist) {
