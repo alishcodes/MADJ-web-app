@@ -69,6 +69,7 @@ public class OrderController {
         for(int i = 0; i < order.getProductsInfo().size(); i++){
             body += products.get(i).getAsHTMLText();
         }
+        // Use the Mailer helper class to send the confirmation email
         Mailer.send(order.getEmail(), "MADJ Order Confirmation", body);
     }
 

@@ -21,14 +21,32 @@ public class Product
      * Converting from string to numbers with this makes it efficient to send and store type information throughout network.
      */
     public enum ProductType{
+        /**
+         * Tops category
+         */
         Tops,
+        /**
+         * Outerwear category
+         */
         Outerwear,
+        /**
+         * Shorts category
+         */
         Shorts,
+        /**
+         * Pants category
+         */
         Pants,
+        /**
+         * Shoes category
+         */
         Shoes,
+        /**
+         * Accessories category
+         */
         Accessories
     }
-    //Product ID number from Database, as well as var declarations for product constructor use
+    // local variables
     @Id int id;
     int price = 0;
     String title = " ", desc = " ", img = " ";
@@ -58,40 +76,89 @@ public class Product
         this.img = img;
         this.productType = productType;
     }
-    // Getters and setters
+    // Getters and setters. Necessary for Spring Boot automation.
+
+    /**
+     * Product price getter method.
+     * @return The product's price.
+     */
     public int getPrice(){ return price; }
+    /**
+     * Product price name/title method.
+     * @return The product's name/title.
+     */
     public String getTitle(){
         return title;
     }
+    /**
+     * Product description getter method.
+     * @return The product's description.
+     */
     public String getDesc(){
         return desc;
     }
+    /**
+     * Product image getter method.
+     * @return The product's image's url.
+     */
     public String getImg(){
         return img;
     }
+    /**
+     * Product type getter method.
+     * @return The product's type.
+     */
     public ProductType getProductType(){
         return productType;
     }
+    /**
+     * Product id getter method.
+     * @return The product's id. This should be consistent throughout the H2 database and the Google Cloud database.
+     */
+    public int getId(){
+        return this.id;
+    }
+    /**
+     * Product name/title setter method.
+     * @param title The product's name/title.
+     */
     public void setTitle(String title){
         this.title = title;
     }
+    /**
+     * Product description setter method.
+     * @param desc The product's description.
+     */
     public void setDesc(String desc){
         this.desc = desc;
     }
+    /**
+     * Product image setter method.
+     * @param img The product's image's url.
+     */
     public void setImg(String img){
         this.img = img;
     }
+    /**
+     * Product price setter method.
+     * @param price The product's price.
+     */
     public void setPrice(int price){
         this.price = price;
     }
+    /**
+     * Product type setter method.
+     * @param productType The product's type.
+     */
     public void setProductType(ProductType productType){
         this.productType = productType;
     }
+    /**
+     * Product id setter method.
+     * @param id The product's id. This should be consistent throughout the H2 database and the Google Cloud database.
+     */
     public void setId(int id){
         this.id = id;
-    }
-    public int getId(){
-        return this.id;
     }
 
     /**

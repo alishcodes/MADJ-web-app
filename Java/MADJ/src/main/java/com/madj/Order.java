@@ -12,10 +12,30 @@ import java.util.HashMap;
  */
 public class Order{
     public class ProductInformation {
+        /**
+         * Product's id
+         */
         int id;
+        /**
+         * Quantity of this product purchased
+         */
         int quantity;
+        /**
+         * Product's price
+         */
         int price;
-        String title, desc, img;
+        /**
+         * Product's title/name
+         */
+        String title;
+        /**
+         * Product's description
+         */
+        String desc;
+        /**
+         * Product's image url
+         */
+        String img;
 
         /**
          * Gets the product information with HTML formatting
@@ -29,7 +49,7 @@ public class Order{
                     "<p>Quantity: " + this.quantity + "</p>";
         }
     }
-    // variables for local use
+    // local variables
     String billingName;
     String billingAddress;
     String email = "", customerName = "", cardInfo = "";
@@ -76,24 +96,60 @@ public class Order{
         total = orderTotal;
     }
     // Getter methods
+
+    /**
+     * Order billing name getter method.
+     * @return The name for the billing information.
+     */
     public String getBillingName(){
         return this.billingName;
     }
+
+    /**
+     * Order billing address getter method.
+     * @return The address for the billing information.
+     */
     public String getBillingAddress(){
         return this.billingAddress;
     }
+
+    /**
+     * Order email getter method.
+     * @return The customer's email.
+     */
     public String getEmail(){
         return this.email;
     }
+
+    /**
+     * Order customer name getter method.
+     * @return The customer's name.
+     */
     public String getCustomerName(){
         return this.customerName;
     }
+
+    /**
+     * Order card information getter method.
+     * @return The card information.
+     */
     public String getCardInfo(){
         return this.cardInfo;
     }
+
+    /**
+     * Order products' information getter method.
+     * @return The list of products' information.
+     * @see ProductInformation
+     */
     public ArrayList<ProductInformation> getProductsInfo(){
         return this.productDump;
     }
+
+    /**
+     * Order total getter method.
+     * @return The total price of this order.
+     */
     public int getTotal(){
         return this.total;
     }
