@@ -31,7 +31,7 @@ public class Driver
         // SpringBoot Starts
         SpringApplication.run(Driver.class, args);
 
-        //Close the Google Cloud JDBC connection on server stop.
+        // Close the Google Cloud JDBC connection on server stop.
         Runtime.getRuntime().addShutdownHook(new Thread()
         {
             @Override

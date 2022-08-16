@@ -33,12 +33,15 @@ class LoadDatabase {
     CommandLineRunner initDatabase(ProductRepository repository) {
 
         return args -> {
+            // Get the Google Cloud connection
             Connection conn = GCloudConnector.getInstance().connection;
-
+            // Query the Google Cloud database for the products
             String query = "SELECT * FROM products";
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery(query);
+
+            // Loop through each product found and get its information.
             while (rs.next()) {
                 String productName = rs.getString("name");
                 int id = rs.getInt("product_id");
@@ -47,6 +50,7 @@ class LoadDatabase {
                 String description = rs.getString("description");
                 int type = rs.getInt("type");
                 String img = rs.getString("img");
+                // Store the product's information in the product repository in the local H2 database
                 log.info("Preloading " + repository.save(
                         new Product(id,
                                 price,

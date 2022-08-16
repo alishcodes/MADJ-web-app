@@ -48,7 +48,7 @@ public class Mailer {
             message.setSubject(subject);
             message.setContent(body, "text/html"); // contents are written in HTML
 
-            //send the email
+            // send the email
             Transport.send(message);
 
             System.out.println("Email sent successfully");

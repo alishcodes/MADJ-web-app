@@ -16,7 +16,10 @@ import javax.persistence.Id;
 @Entity
 public class Product
 {
-    //enumerated variables to sort products by type
+    /**
+     * Enum that represents product types.
+     * Converting from string to numbers with this makes it efficient to send and store type information throughout network.
+     */
     public enum ProductType{
         Tops,
         Outerwear,
@@ -30,8 +33,22 @@ public class Product
     int price = 0;
     String title = " ", desc = " ", img = " ";
     ProductType productType;
+
+    /**
+     * Default constructor.
+     */
     public Product(){}
-    // Product constructor
+
+    /**
+     * Parameterized constructor.
+     * @param id The product's id. Consistent throughout the local H2 database and Google Cloud database.
+     * @param price The product's price. Should be multiplied by 100 to be stored in an int.
+     * @param title The product's name.
+     * @param desc The product's description.
+     * @param img The product's image url.
+     * @param productType The type of product.
+     * @see ProductType
+     */
     public Product(int id, int price, String title, String desc, String img,
                    ProductType productType){
         this.id = id;
@@ -41,7 +58,7 @@ public class Product
         this.img = img;
         this.productType = productType;
     }
-    // Front End Data Call Functions
+    // Getters and setters
     public int getPrice(){ return price; }
     public String getTitle(){
         return title;
@@ -55,7 +72,6 @@ public class Product
     public ProductType getProductType(){
         return productType;
     }
-    // Modify Data Functions
     public void setTitle(String title){
         this.title = title;
     }
@@ -77,7 +93,10 @@ public class Product
     public int getId(){
         return this.id;
     }
-    //Function to sift through DB and find a certain product
+
+    /**
+     * Method to see if products are equal to one another
+     */
     @Override
     public boolean equals(Object o) {
 
@@ -93,12 +112,19 @@ public class Product
                 && Objects.equals(this.productType, product.productType)
                 && Objects.equals(this.img, product.img);
     }
-    // Hash objects to store Ids in relation to relevant title , price etc.
+
+    /**
+     * Generate hash using all product's unique properties
+     */
     @Override
     public int hashCode() {
         return Objects.hash(this.id, this.title, this.desc, this.price, this.productType, this.img);
     }
-    // function to return a product values as a string
+
+    /**
+     * Overridden toString method.
+     * @return Product information as a string.
+     */
     public String toString(){
         return "Product{" +
                 "id=" + this.id +

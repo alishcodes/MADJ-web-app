@@ -17,6 +17,10 @@ public class Order{
         int price;
         String title, desc, img;
 
+        /**
+         * Gets the product information with HTML formatting
+         * @return Product information as a String
+         */
         public String getAsHTMLText(){
             return
                     "<p><h2>" + this.title + "</h2></p>" +
@@ -30,16 +34,27 @@ public class Order{
     String billingAddress;
     String email = "", customerName = "", cardInfo = "";
     int total = 0;
-    // list of all products in an order
+    /**
+     * List of products' information for this order.
+     */
     public ArrayList<ProductInformation> productDump;
-    // Order Constructor
+
+    /**
+     * Order constructor.
+     * @param billingName The name for the billing information.
+     * @param billingAddress The address for the billing information.
+     * @param customerName The customer's name.
+     * @param email The customer's email.
+     * @param cardInfo The customer's card information.
+     * @param products The product ids and quantities.
+     */
     public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Integer, Integer> products){
         productDump = new ArrayList<>();
         int orderTotal = 0;
         for (int id : products.keySet()) {
             // Product variable to hold product currently under analysis
             Product temp = ProductController.globalRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
-            //increment total price of order with current item multiplied by quantity
+            // increment total price of order with current item multiplied by quantity
             orderTotal += temp.getPrice() * products.get(id);
             // create a new instance of product info to manipulate without cross contamination
             ProductInformation working = new ProductInformation();
@@ -49,7 +64,7 @@ public class Order{
             working.img = temp.getImg();
             working.id = temp.getId();
             working.quantity = products.get(id);
-            // add created product to list of all products in order
+            // add created product to list
             productDump.add(working);
         }
         // Collect Order information
@@ -60,7 +75,7 @@ public class Order{
         this.cardInfo = cardInfo;
         total = orderTotal;
     }
-    // Functions for front end data retrieval
+    // Getter methods
     public String getBillingName(){
         return this.billingName;
     }
