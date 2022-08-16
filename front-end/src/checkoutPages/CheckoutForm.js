@@ -53,7 +53,7 @@ const CheckoutForm = () => {
                 body: JSON.stringify({
                     billingName: `${values.billingFName} ${values.billingLName}`,
                     billingAddress: `${values.street}, ${values.city}, ${values.state} ${values.zip}`,
-                    customerName: `${values.firstName} ${values.firstName}`,
+                    customerName: `${values.firstName} ${values.lastName}`,
                     email: values.email,
                     cardInfo: `${values.cardNumber}, ${values.cardCCV}`,
                     productIDs: cartIds,

@@ -16,6 +16,14 @@ public class Order{
         int quantity;
         int price;
         String title, desc, img;
+
+        public String getAsHTMLText(){
+            return
+                    "<p><h2>" + this.title + "</h2></p>" +
+                    "<p>" + this.desc + "</p>" +
+                    "<p>Price: $" + (((float)this.price) / 100) + "</p>" +
+                    "<p>Quantity: " + this.quantity + "</p>";
+        }
     }
     // variables for local use
     String billingName;
