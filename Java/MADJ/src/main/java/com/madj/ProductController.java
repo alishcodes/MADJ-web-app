@@ -19,8 +19,15 @@ class ProductController {
 
     private final ProductRepository repository;
 
+    /**
+     * The product repository in the local H2 database. This is a snapshot of the Google Cloud MySQL database taken when the server starts.
+     */
     public static ProductRepository globalRepository;
 
+    /**
+     * Product controller constructor. Used in Spring Boot automation.
+     * @param repository The product repository in the local H2 database.
+     */
     ProductController(ProductRepository repository) {
         this.repository = repository;
         globalRepository = repository;
@@ -35,9 +42,11 @@ class ProductController {
     // tag::get-aggregate-root[]
     @GetMapping(value = "/products")
     List<Product> all(@RequestParam(required = false) String type) {
+        // If no type is specified, then just get all the products
         if(type == null){
             return repository.findAll();
         }
+        // Check if the type in the argument is valid
         Product.ProductType selectedType;
         try{
              selectedType = Product.ProductType.valueOf(type);
@@ -45,6 +54,7 @@ class ProductController {
         catch(IllegalArgumentException e){
             throw new TypeNotFoundException(type);
         }
+        // Find the products that are the specified type
         List<Product> results = new LinkedList<Product>();
         for(Product p : repository.findAll()){
             if(p.getProductType() == selectedType){

@@ -29,21 +29,28 @@ public class OrderController {
             value = "send-order",
             method = RequestMethod.POST)
    public void ReceiveOrder(@RequestBody OrderJSONInformation orderJSONInformation){
-
+        // Initialize variables. Cache product and quantity lists
         HashMap<Integer, Integer> orderProducts = new HashMap<>();
         List<Integer> products = orderJSONInformation.getProductIDs();
         List<Integer> quantities = orderJSONInformation.getQuantities();
-
+        // Stores product ids and their quantities in a hashmap instead of two lists
         for(int i = 0; i < products.size(); i++){
             orderProducts.put(products.get(i), quantities.get(i));
         }
-
+        // Create the new order entry in the online database
         Order order = new Order(orderJSONInformation.getBillingName(), orderJSONInformation.getBillingAddress(), orderJSONInformation.getCustomerName(), orderJSONInformation.getEmail(), orderJSONInformation.getCardInfo(), orderProducts);
         saveOrderToDB(order);
         sendConfirmationEmail(order);
         System.out.println("Received data: " + orderJSONInformation.toString());
     }
+
+    /**
+     * Helper method to send the confirmation email using the Mailer class.
+     * @param order
+     * @see Mailer
+     */
     private void sendConfirmationEmail(Order order){
+        // Format the message body in HTML and make
         String body = "<h1>Thank you for your order, " + order.getCustomerName() + ".</h1>\n" +
                 "<p>\n" +
                 "Billing name: \n" + order.getBillingName() +
@@ -62,9 +69,17 @@ public class OrderController {
         for(int i = 0; i < order.getProductsInfo().size(); i++){
             body += products.get(i).getAsHTMLText();
         }
+        // Use the Mailer helper class to send the confirmation email
         Mailer.send(order.getEmail(), "MADJ Order Confirmation", body);
     }
+
+    /**
+     * Helper method to save a given order to the Google Cloud database.
+     * @param order
+     * @see GCloudConnector
+     */
     private void saveOrderToDB(Order order){
+        // Send a new order entry to the Google Cloud database
         String query = "INSERT INTO orders (billing_name, billing_address, email_address, customer_name, card_information, total)\n" +
                 " values (" +
                 "\"" + order.getBillingName() + "\"" +
@@ -77,12 +92,16 @@ public class OrderController {
         try(Statement statement = GCloudConnector.getInstance().connection.createStatement()){
             statement.executeUpdate(query);
 
+            // Get the order id of this order to be used in the order_items entries
             int orderId = -1;
             ResultSet rs = statement.executeQuery("SELECT LAST_INSERT_ID()");
             if (rs.next()) {
                 orderId = rs.getInt(1);
             }
-
+            /* Send the products and quantities to the database using in order_items table.
+             * The order_items entries are in a many-to-one relationship with the orders entries.
+             * All order_items are associated with a product and an order. The product_ids and order_ids are foreign keys.
+             */
             for(Order.ProductInformation product : order.getProductsInfo()){
                 query = "INSERT INTO order_items (order_id, product_id, quantity)\n" +
                         " values (" +
