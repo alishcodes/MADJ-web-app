@@ -28,7 +28,7 @@ public class ProductController {
      * Product controller constructor. Used in Spring Boot automation.
      * @param repository The product repository in the local H2 database.
      */
-    ProductController(ProductRepository repository) {
+    public ProductController(ProductRepository repository) {
         this.repository = repository;
         globalRepository = repository;
     }
@@ -41,7 +41,7 @@ public class ProductController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping(value = "/products")
-    List<Product> all(@RequestParam(required = false) String type) {
+    public List<Product> all(@RequestParam(required = false) String type) {
         // If no type is specified, then just get all the products
         if(type == null){
             return repository.findAll();
@@ -73,7 +73,7 @@ public class ProductController {
      * @return Product requested, if it exists.
      */
     @GetMapping("/products/{id}")
-    Product one(@PathVariable int id) {
+    public Product one(@PathVariable int id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));

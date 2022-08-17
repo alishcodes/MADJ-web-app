@@ -30,7 +30,7 @@ public class LoadDatabase {
      * @see GCloudConnector
      */
     @Bean
-    CommandLineRunner initDatabase(ProductRepository repository) {
+    public CommandLineRunner initDatabase(ProductRepository repository) {
 
         return args -> {
             // Get the Google Cloud connection
