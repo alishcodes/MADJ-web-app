@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import {TextField, Button, Paper, Grid, Divider, Typography, Stack} from '@mui/material';
 import shoppingCartContext from "../../contexts/ShoppingCartContext";
 import { useNavigate} from "react-router-dom";
-
+import * as Yup from 'yup';
 
 /**
  * Component that displays form text fields and handles form submission
@@ -25,8 +25,9 @@ const CheckoutForm = () => {
 
     /**
      * Function to pass useFormik() hook initial form variables.
-     * onSubmit takes changed formik.values and uses fetch method to
-     * POST json data
+     * Validation schema uses the validation library "Yup" to ensure
+     * all fields have been filled and that email is valid. onSubmit takes changed
+     * formik values and uses fetch method to post json data.
      */
     const formik = useFormik({
         initialValues: {
@@ -44,6 +45,25 @@ const CheckoutForm = () => {
             productIDs: [],
             quantities: []
         },
+        validationSchema: Yup.object({
+            firstName: Yup.string().required('Required'),
+            lastName: Yup.string().required('Required'),
+            street: Yup.string().required('Required'),
+            city: Yup.string().required('Required'),
+            state: Yup.string().required('Required'),
+            zip: Yup.string()
+                .matches(/^[0-9]+$/, "Cannot include letters.")
+                .length(5, "Must be exactly 5 digits.")
+                .required('Required'),
+            email: Yup.string().email('Invalid email').required('Required'),
+            billingFName: Yup.string().required('Required'),
+            billingLName: Yup.string().required('Required'),
+            cardNumber: Yup.string().required('Required'),
+            cardCCV: Yup.string()
+                .matches(/^[0-9]+$/, "Cannot include letters.")
+                .length(3, "Must be exactly 3 digits.")
+                .required('Required'),
+        }),
         onSubmit: (values) => {
             fetch('/api/send-order', {
                 method: 'POST',
@@ -88,10 +108,12 @@ const CheckoutForm = () => {
                                 label="First Name"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.firstName}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.firstName && formik.errors.firstName ?
+                                <Typography color="red">{formik.errors.firstName}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -100,10 +122,12 @@ const CheckoutForm = () => {
                                 label="Last Name"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.lastName}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.lastName && formik.errors.lastName ?
+                                <Typography color="red">{formik.errors.lastName}</Typography> : null}
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -112,10 +136,12 @@ const CheckoutForm = () => {
                                 label="Email Address"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.email}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.email && formik.errors.email ?
+                                <Typography color="red">{formik.errors.email}</Typography> : null}
                         </Grid>
                         <Grid item xs={12}>
                             <Divider flexItem/>
@@ -130,10 +156,12 @@ const CheckoutForm = () => {
                                 label="First Name"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.billingFName}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.billingFName && formik.errors.billingFName ?
+                                <Typography color="red">{formik.errors.billingFName}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -142,10 +170,12 @@ const CheckoutForm = () => {
                                 label="Last Name"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.billingLName}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.billingLName && formik.errors.billingLName ?
+                                <Typography color="red">{formik.errors.billingLName}</Typography> : null}
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -155,10 +185,12 @@ const CheckoutForm = () => {
                                 variant="outlined"
                                 sx={{ marginRight: "50px"}}
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.street}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.street && formik.errors.street ?
+                                <Typography color="red">{formik.errors.street}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -167,10 +199,12 @@ const CheckoutForm = () => {
                                 label="City"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.city}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.city && formik.errors.city ?
+                                <Typography color="red">{formik.errors.city}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -179,10 +213,12 @@ const CheckoutForm = () => {
                                 label="State"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.state}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.state && formik.errors.state ?
+                                <Typography color="red">{formik.errors.state}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -191,10 +227,12 @@ const CheckoutForm = () => {
                                 label="Zip code"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.zip}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.zip && formik.errors.zip ?
+                                <Typography color="red">{formik.errors.zip}</Typography> : null}
                         </Grid>
                         <Grid item xs={12}>
                             <Divider flexItem/>
@@ -209,10 +247,12 @@ const CheckoutForm = () => {
                                 label="Card Number"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.cardNumber}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.cardNumber && formik.errors.cardNumber ?
+                                <Typography color="red">{formik.errors.cardNumber}</Typography> : null}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -221,10 +261,12 @@ const CheckoutForm = () => {
                                 label="CCV"
                                 variant="outlined"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value={formik.values.cardCCV}
                                 fullWidth
-                            >
-                            </TextField>
+                            />
+                            {formik.touched.cardCCV && formik.errors.cardCCV ?
+                                <Typography color="red">{formik.errors.cardCCV}</Typography> : null}
                         </Grid>
                     </Grid>
                 </Paper>
