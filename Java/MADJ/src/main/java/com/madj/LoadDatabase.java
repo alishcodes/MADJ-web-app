@@ -17,7 +17,7 @@ import java.sql.Statement;
  * @since 2022-08-10
  */
 @Configuration
-class LoadDatabase {
+public class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 

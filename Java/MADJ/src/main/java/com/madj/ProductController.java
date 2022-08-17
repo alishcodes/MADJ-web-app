@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api")
-class ProductController {
+public class ProductController {
 
     private final ProductRepository repository;
 
