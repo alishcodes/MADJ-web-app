@@ -33,23 +33,19 @@ public class Driver
         SpringApplication.run(Driver.class, args);
 
         // Close the Google Cloud JDBC connection on server stop.
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
-            public void run()
-            {
-                Connection conn = GCloudConnector.getInstance().connection;
-                if (conn != null)
-                {
-                    try
-                    {
-                        conn.close ();
-                        System.out.println ("Database connection terminated");
+            public void run() {
+                try {
+                    Connection conn = GCloudConnector.getInstance().connection;
+                    if (conn != null) {
+                        conn.close();
+                        System.out.println("Database connection terminated");
                     }
-                    catch (Exception e) { }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         });
     }
-
 }
