@@ -2,6 +2,11 @@ package com.madj;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import javax.sql.DataSource;
 
 /**
  * Singleton class to handle Google Cloud connection, since only one connection should be active at a time.
@@ -12,7 +17,13 @@ import java.sql.DriverManager;
  * @see Connection
  */
 public class GCloudConnector {
-
+    // Environment variables, use the Google Cloud secret manager for any sensitive information
+    private static final String INSTANCE_CONNECTION_NAME =
+            System.getenv("DBINSTANCENAME");
+    private static final String INSTANCE_UNIX_SOCKET = System.getenv("DBINSTANCEUNIXSOCKET");
+    private static final String DB_USER = System.getenv("DBUSER");
+    private static final String DB_PASS = System.getenv("DBPASS");
+    private static final String DB_NAME = System.getenv("DBNAME");
     private static GCloudConnector instance;
 
     private GCloudConnector(Connection conn)
@@ -29,8 +40,8 @@ public class GCloudConnector {
      * Get the current instance of GCloudConnector. Generates the instance if it does not yet exist.
      * @return Get GCloudConnector instance.
      */
-    public static GCloudConnector getInstance(){
-        if(instance != null){
+    public static GCloudConnector getInstance() throws SQLException {
+        if(instance != null && !instance.connection.isClosed()){
             return instance;
         }
         instance = new GCloudConnector(getConnection());
@@ -42,18 +53,11 @@ public class GCloudConnector {
      * @return An active JDBC connection if it is successful. Otherwise, returns null.
      */
     private static Connection getConnection(){
-        // Get username, instance name, and password from the environment variables
         Connection conn = null;
-        String DBPass = System.getenv("DBPASS");
-        String DBInstanceName = System.getenv("DBINSTANCENAME");
-        String DBName = System.getenv("DBNAME");
-
         try
         {
             // Attempt to connect to the Google Cloud database
-            String url = String.format("jdbc:mysql:///%s?cloudSqlInstance=%s&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=%s", DBName, DBInstanceName, DBPass);
-            Class.forName ("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url);
+            conn = createConnectionPool().getConnection();
             System.out.println ("Database connection established");
         }
         catch (Exception e)
@@ -65,5 +69,33 @@ public class GCloudConnector {
         {
             return conn;
         }
+    }
+
+    private static DataSource createConnectionPool() {
+        // Config object to specify connection specifications
+        HikariConfig config = new HikariConfig();
+
+        // Set url to the proper format
+        config.setJdbcUrl(String.format("jdbc:mysql:///%s", DB_NAME));
+        config.setUsername(DB_USER);
+        config.setPassword(DB_PASS);
+
+        config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.SocketFactory");
+        config.addDataSourceProperty("cloudSqlInstance", INSTANCE_CONNECTION_NAME);
+
+        /* Use a UNIX socket to connect if available.
+         * On the cloud run service, we use a proxy to connect, so this UNIX socket path is necessary.
+         * In other environments, such as local machines with the GCloud CLI,
+         * gcloud auth application-default login is enough.
+         */
+        if (INSTANCE_UNIX_SOCKET != null) {
+            config.addDataSourceProperty("unixSocketPath", INSTANCE_UNIX_SOCKET);
+        }
+
+        // Only one connection is needed for now
+        config.setMaximumPoolSize(1);
+
+        // Begin the connection pool with the specifications
+        return new HikariDataSource(config);
     }
 }
