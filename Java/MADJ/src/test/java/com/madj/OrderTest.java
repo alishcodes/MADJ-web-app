@@ -14,7 +14,6 @@ class OrderTest {
     @BeforeEach
     void setUp(){
         HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-        // TODO feed order some more fake Product instances and update orderTotal assertion accordingly
         products.put(new Product(0, 1234, "A blue shirt", "This shirt is blue",
                 "123@imgur.com", Product.ProductType.Tops), 4);
         products.put(new Product(1, 2345, "Red pants", "These pants are red",
@@ -25,31 +24,43 @@ class OrderTest {
     }
     @Test
     void getBillingName() {
+        assertNotNull(order);
+        assertNotNull(order.getBillingName());
         assertEquals("Joe", order.getBillingName());
     }
 
     @Test
     void getBillingAddress() {
+        assertNotNull(order);
+        assertNotNull(order.getBillingAddress());
         assertEquals("123 street", order.getBillingAddress());
     }
 
     @Test
     void getEmail() {
+        assertNotNull(order);
+        assertNotNull(order.getEmail());
         assertEquals("example@gmail.com", order.getEmail());
     }
 
     @Test
     void getCustomerName() {
+        assertNotNull(order);
+        assertNotNull(order.getCustomerName());
         assertEquals("Jack Nihoff", order.getCustomerName());
     }
 
     @Test
     void getCardInfo() {
+        assertNotNull(order);
+        assertNotNull(order.getCardInfo());
         assertEquals("12345678", order.getCardInfo());
     }
 
     @Test
     void getProductsInfo() {
+        assertNotNull(order);
+        assertNotNull(order.getProductsInfo());
         // check each ProductInformation variable in the list to see that they were generated correctly
         for(Order.ProductInformation p : order.getProductsInfo()){
             Product product= p.product;
@@ -74,6 +85,8 @@ class OrderTest {
 
     @Test
     void getTotal() {
+        assertNotNull(order);
+        assertNotNull(order.getTotal());
         assertEquals((1234 * 4) + (2345 * 3), order.getTotal());
     }
 }
