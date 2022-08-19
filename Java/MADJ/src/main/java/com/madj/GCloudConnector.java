@@ -38,12 +38,19 @@ public class GCloudConnector {
 
     /**
      * Get the current instance of GCloudConnector. Generates the instance if it does not yet exist.
+     * Generates a new connection if the current one is closed.
      * @return Get GCloudConnector instance.
      */
     public static GCloudConnector getInstance() throws SQLException {
-        if(instance != null && !instance.connection.isClosed()){
+        if(instance != null){
+            if(instance.connection.isClosed()){
+                // generate connection if one is closed
+                instance.connection = getConnection();
+            }
+            // instance already exists, so it is returned
             return instance;
         }
+        // no instance exists, so one is created
         instance = new GCloudConnector(getConnection());
         return instance;
     }
