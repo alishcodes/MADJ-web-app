@@ -30,12 +30,14 @@ public class OrderController {
             method = RequestMethod.POST)
    public void ReceiveOrder(@RequestBody OrderJSONInformation orderJSONInformation){
         // Initialize variables. Cache product and quantity lists
-        HashMap<Integer, Integer> orderProducts = new HashMap<>();
+        HashMap<Product, Integer> orderProducts = new HashMap<>();
         List<Integer> products = orderJSONInformation.getProductIDs();
         List<Integer> quantities = orderJSONInformation.getQuantities();
-        // Stores product ids and their quantities in a hashmap instead of two lists
+        // Stores products and their quantities in a hashmap instead of two lists
         for(int i = 0; i < products.size(); i++){
-            orderProducts.put(products.get(i), quantities.get(i));
+            int id = products.get(i);
+            Product pr = ProductController.globalRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+            orderProducts.put(pr, quantities.get(i));
         }
         // Create the new order entry in the online database
         Order order = new Order(orderJSONInformation.getBillingName(), orderJSONInformation.getBillingAddress(), orderJSONInformation.getCustomerName(), orderJSONInformation.getEmail(), orderJSONInformation.getCardInfo(), orderProducts);
@@ -106,7 +108,7 @@ public class OrderController {
                 query = "INSERT INTO order_items (order_id, product_id, quantity)\n" +
                         " values (" +
                         "\"" + orderId + "\"" +
-                        ",\"" + product.id + "\"" +
+                        ",\"" + product.product.getId() + "\"" +
                         ",\"" + product.quantity + "\"" +
                         ");";
                 statement.executeUpdate(query);

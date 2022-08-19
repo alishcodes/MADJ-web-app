@@ -12,43 +12,26 @@ import java.util.HashMap;
  */
 public class Order{
     /**
-     * Product information to store product information and quantity in order
+     * Container to store product and quantity in order
      */
     public class ProductInformation {
         /**
-         * Product's id
+         * Product purchased in this order
          */
-        int id;
+        Product product;
         /**
          * Quantity of this product purchased
          */
         int quantity;
-        /**
-         * Product's price
-         */
-        int price;
-        /**
-         * Product's title/name
-         */
-        String title;
-        /**
-         * Product's description
-         */
-        String desc;
-        /**
-         * Product's image url
-         */
-        String img;
-
         /**
          * Gets the product information with HTML formatting
          * @return Product information as a String
          */
         public String getAsHTMLText(){
             return
-                    "<p><h2>" + this.title + "</h2></p>" +
-                    "<p>" + this.desc + "</p>" +
-                    "<p>Price: $" + (((float)this.price) / 100) + "</p>" +
+                    "<p><h2>" + product.getTitle() + "</h2></p>" +
+                    "<p>" + product.getDesc() + "</p>" +
+                    "<p>Price: $" + (((float)product.getPrice()) / 100) + "</p>" +
                     "<p>Quantity: " + this.quantity + "</p>";
         }
     }
@@ -69,24 +52,18 @@ public class Order{
      * @param customerName The customer's name.
      * @param email The customer's email.
      * @param cardInfo The customer's card information.
-     * @param products The product ids and quantities.
+     * @param products The products and quantities.
      */
-    public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Integer, Integer> products){
+    public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Product, Integer> products){
         productDump = new ArrayList<>();
         int orderTotal = 0;
-        for (int id : products.keySet()) {
-            // Product variable to hold product currently under analysis
-            Product temp = ProductController.globalRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        for (Product pr : products.keySet()) {
             // increment total price of order with current item multiplied by quantity
-            orderTotal += temp.getPrice() * products.get(id);
+            orderTotal += pr.getPrice() * products.get(pr);
             // create a new instance of product info to manipulate without cross contamination
             ProductInformation working = new ProductInformation();
-            working.price = temp.getPrice();
-            working.title = temp.getTitle();
-            working.desc = temp.getDesc();
-            working.img = temp.getImg();
-            working.id = temp.getId();
-            working.quantity = products.get(id);
+            working.product = pr;
+            working.quantity = products.get(pr);
             // add created product to list
             productDump.add(working);
         }
