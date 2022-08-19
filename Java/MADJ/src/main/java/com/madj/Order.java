@@ -69,24 +69,22 @@ public class Order{
      * @param customerName The customer's name.
      * @param email The customer's email.
      * @param cardInfo The customer's card information.
-     * @param products The product ids and quantities.
+     * @param products The products and quantities.
      */
-    public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Integer, Integer> products){
+    public Order(String billingName, String billingAddress, String customerName, String email, String cardInfo, HashMap<Product, Integer> products){
         productDump = new ArrayList<>();
         int orderTotal = 0;
-        for (int id : products.keySet()) {
-            // Product variable to hold product currently under analysis
-            Product temp = ProductController.globalRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        for (Product pr : products.keySet()) {
             // increment total price of order with current item multiplied by quantity
-            orderTotal += temp.getPrice() * products.get(id);
+            orderTotal += pr.getPrice() * products.get(pr);
             // create a new instance of product info to manipulate without cross contamination
             ProductInformation working = new ProductInformation();
-            working.price = temp.getPrice();
-            working.title = temp.getTitle();
-            working.desc = temp.getDesc();
-            working.img = temp.getImg();
-            working.id = temp.getId();
-            working.quantity = products.get(id);
+            working.price = pr.getPrice();
+            working.title = pr.getTitle();
+            working.desc = pr.getDesc();
+            working.img = pr.getImg();
+            working.id = pr.getId();
+            working.quantity = products.get(pr);
             // add created product to list
             productDump.add(working);
         }
