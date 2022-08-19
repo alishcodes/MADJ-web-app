@@ -65,7 +65,7 @@ const CheckoutForm = () => {
                 .required('Required'),
         }),
         onSubmit: (values) => {
-            fetch('/api/send-order', {
+            fetch('https://nth-segment-357600.wl.r.appspot.com/api/send-order', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -24,7 +24,7 @@ const Catalog = ({type = ""}) => {
      * Function that fetches products from database depending on type
      */
     useEffect(() => {
-        fetch(type === "" ? `/api/products` : `/api/products?type=${type}`)
+        fetch(type === "" ? `https://nth-segment-357600.wl.r.appspot.com/api/products` : `https://nth-segment-357600.wl.r.appspot.com/api/products?type=${type}`)
             .then((response) => response.json())
             .then((fetchedData) => {
                 setData(fetchedData)
