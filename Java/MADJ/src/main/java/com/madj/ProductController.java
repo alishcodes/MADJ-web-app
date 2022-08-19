@@ -40,6 +40,7 @@ public class ProductController {
      */
     // Aggregate root
     // tag::get-aggregate-root[]
+    @CrossOrigin(origins = "https://madjsite.web.app")
     @GetMapping(value = "/products")
     public List<Product> all(@RequestParam(required = false) String type) {
         // If no type is specified, then just get all the products
@@ -72,6 +73,7 @@ public class ProductController {
      * @param id The id to search for. Included in the request's path/url.
      * @return Product requested, if it exists.
      */
+    @CrossOrigin(origins = "https://madjsite.web.app")
     @GetMapping("/products/{id}")
     public Product one(@PathVariable int id) {
 

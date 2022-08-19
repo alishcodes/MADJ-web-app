@@ -25,6 +25,7 @@ public class OrderController {
      * @param orderJSONInformation JSON formatted to fit the OrderJSONInformation properties. Included in the request's body.
      * @see OrderJSONInformation
      */
+    @CrossOrigin(origins = "https://madjsite.web.app")
     @RequestMapping(
             value = "send-order",
             method = RequestMethod.POST)
