@@ -34,7 +34,7 @@ class GCloudConnectorTest {
             fail("SQL Exception occurred");
         }
         finally {
-            //try to close the connection
+            // try to close the connection
             if(conn != null){
                 try{
                     conn.close();
