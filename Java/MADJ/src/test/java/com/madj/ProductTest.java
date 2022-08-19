@@ -25,12 +25,12 @@ class ProductTest {
 
     @Test
     void getDesc() {
-        assertEquals("This shirt is blue",product.getTitle());
+        assertEquals("This shirt is blue",product.getDesc());
     }
 
     @Test
     void getImg() {
-        assertEquals("123@imgur.com",product.getTitle());
+        assertEquals("123@imgur.com",product.getImg());
     }
 
     @Test
@@ -89,7 +89,7 @@ class ProductTest {
 
     @Test
     void testHashCode() {
-        
+
     }
 
     @Test
