@@ -51,26 +51,22 @@ class OrderTest {
     @Test
     void getProductsInfo() {
         // check each ProductInformation variable in the list to see that they were generated correctly
-        for(Order.ProductInformation prod : order.getProductsInfo()){
-            switch (prod.id){
+        for(Order.ProductInformation p : order.getProductsInfo()){
+            Product product= p.product;
+            /* Assert sure products are equal to one another.
+             * This works because we overrode Product.equals.
+             */
+            assertEquals(p.product, product);
+            // Assert that quantities are equal to one another.
+            switch (product.getId()){
                 case 0:
-                    assertEquals(0, prod.id);
-                    assertEquals(4, prod.quantity);
-                    assertEquals(1234, prod.price);
-                    assertEquals("A blue shirt", prod.title);
-                    assertEquals("This shirt is blue", prod.desc);
-                    assertEquals("123@imgur.com", prod.img);
+                    assertEquals(4, p.quantity);
                     break;
                 case 1:
-                    assertEquals(1, prod.id);
-                    assertEquals(3, prod.quantity);
-                    assertEquals(2345, prod.price);
-                    assertEquals("Red pants", prod.title);
-                    assertEquals("These pants are red", prod.desc);
-                    assertEquals("425@imgur.com", prod.img);
+                    assertEquals(3, p.quantity);
                     break;
                 default:
-                    fail("Index " + prod.id + " is not expected");
+                    fail("Index " + product.getId() + " is not expected");
             }
         }
 

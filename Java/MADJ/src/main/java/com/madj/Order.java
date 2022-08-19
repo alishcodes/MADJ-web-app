@@ -12,43 +12,26 @@ import java.util.HashMap;
  */
 public class Order{
     /**
-     * Product information to store product information and quantity in order
+     * Container to store product and quantity in order
      */
     public class ProductInformation {
         /**
-         * Product's id
+         * Product purchased in this order
          */
-        int id;
+        Product product;
         /**
          * Quantity of this product purchased
          */
         int quantity;
-        /**
-         * Product's price
-         */
-        int price;
-        /**
-         * Product's title/name
-         */
-        String title;
-        /**
-         * Product's description
-         */
-        String desc;
-        /**
-         * Product's image url
-         */
-        String img;
-
         /**
          * Gets the product information with HTML formatting
          * @return Product information as a String
          */
         public String getAsHTMLText(){
             return
-                    "<p><h2>" + this.title + "</h2></p>" +
-                    "<p>" + this.desc + "</p>" +
-                    "<p>Price: $" + (((float)this.price) / 100) + "</p>" +
+                    "<p><h2>" + product.getTitle() + "</h2></p>" +
+                    "<p>" + product.getDesc() + "</p>" +
+                    "<p>Price: $" + (((float)product.getPrice()) / 100) + "</p>" +
                     "<p>Quantity: " + this.quantity + "</p>";
         }
     }
@@ -79,11 +62,7 @@ public class Order{
             orderTotal += pr.getPrice() * products.get(pr);
             // create a new instance of product info to manipulate without cross contamination
             ProductInformation working = new ProductInformation();
-            working.price = pr.getPrice();
-            working.title = pr.getTitle();
-            working.desc = pr.getDesc();
-            working.img = pr.getImg();
-            working.id = pr.getId();
+            working.product = pr;
             working.quantity = products.get(pr);
             // add created product to list
             productDump.add(working);

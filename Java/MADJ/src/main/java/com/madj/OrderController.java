@@ -108,7 +108,7 @@ public class OrderController {
                 query = "INSERT INTO order_items (order_id, product_id, quantity)\n" +
                         " values (" +
                         "\"" + orderId + "\"" +
-                        ",\"" + product.id + "\"" +
+                        ",\"" + product.product.getId() + "\"" +
                         ",\"" + product.quantity + "\"" +
                         ");";
                 statement.executeUpdate(query);
