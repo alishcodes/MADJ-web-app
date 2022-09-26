@@ -1,5 +1,5 @@
 
-import {Button, Divider, Drawer, Stack, Typography} from '@mui/material';
+import {Button, Divider, Drawer, Grid, Stack, Typography} from '@mui/material';
 import {useContext} from "react";
 import ShoppingCartContext from "../contexts/ShoppingCartContext";
 import React from 'react';
@@ -38,35 +38,56 @@ export const ShoppingCartW = ({cartOpen}) => {
             open={cartOpen}
             onClose={closeCart}
         >
-
-            <Typography variant="h3" >Shopping Cart</Typography>
-            <div>{items.length === 0 && <Typography variant="h6" position= "absolute" top =" 50%"  left = "50%"
-                transform = "translate(-50%, -50%) ">Cart is empty</Typography>}</div>
-
             <Stack
                 flex={1}
                 spacing={2}
-                sx={{ minWidth: "500px", padding: "20px" }}
             >
-                {items.map((item) => (
-                    <div key={item.id} className="row">
-                        <Divider flexItem/>
-                        <Typography>{item.title}</Typography>
-                        <Typography>{item.qty} x ${item.price}</Typography>
-                        <div>
-                            <Button  variant="outlined" onClick={() => addToCart(item.id, item.title, item.price)} className="add">+</Button>
-                            <Button  variant="outlined" onClick={() => removeFromCart(item.id, item.title, item.price)}className="Remove">-</Button>
-                    </div>
-                        <Divider flexItem/>
-                    </div>
+                <Typography variant="h3" sx={{ textAlign: "center", padding: "20px"}}>Shopping Cart</Typography>
+                <Divider/>
+                {items.length === 0 && <Typography variant={"h6"} sx={{ textAlign: "center", padding: "20px"}}>Cart is currently empty.</Typography>}
+                <Stack
+                    flex={1}
+                    spacing={2}
+                    sx={{ minWidth: "500px", padding: "20px" }}
+                >
+                    {items.map((item) => (
+                        <div key={item.id} className="row">
+                            <Divider flexItem/>
+                            <Typography>{item.title}</Typography>
+                            <Typography>{item.qty} x ${item.price}</Typography>
+                            <div>
+                                <Button  variant="outlined" onClick={() => addToCart(item.id, item.title, item.price)} className="add">+</Button>
+                                <Button  variant="outlined" onClick={() => removeFromCart(item.id, item.title, item.price)}className="Remove">-</Button>
+                        </div>
+                            <Divider flexItem/>
+                        </div>
 
-                ))}
-            </Stack>
-            <Stack>
-                <Typography variant="h6">Total: ${calcTotal()} </Typography>
-                <Link to={"/checkout"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
-                    <Button onClick={closeCart}>Continue to Checkout</Button>
-                </Link>
+                    ))}
+                </Stack>
+                <Divider flexItem variant="middle"/>
+                <Grid
+                    container
+                    direction={"column"}
+                    justifyContent={"center"}
+                    alignItems={"stretch"}
+
+                >
+                    <Grid item>
+                        <Grid container direction={"row"} justifyContent={"space-between"}>
+                            <Grid item>
+                                <Typography variant="h6" sx={{ padding: "20px" }}>Total:</Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant={"h6"} sx={{ padding: "20px"}}>${calcTotal()}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item alignSelf={"center"}>
+                        <Link to={"/checkout"} sx={{ textDecoration: 'inherit', color: 'inherit' }}>
+                            <Button variant={"outlined"} size={"large"} sx={{ margin: "20px"}} onClick={closeCart}>Checkout</Button>
+                        </Link>
+                    </Grid>
+                </Grid>
             </Stack>
         </Drawer>
 
