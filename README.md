@@ -13,12 +13,14 @@ This project was designed and implemented in an accelerated four-week course wit
 - Payment processing system that sends a confirmation email upon completion of purchase.
 - Functional back-end and database that holds product information and order history.
 
-### Tools
+## Tools
 
 - ReactJS
 - Material UI framework
 - Spring Boot
 - Cloud SQL
+
+---
 
 ### Status
 
